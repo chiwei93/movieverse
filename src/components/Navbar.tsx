@@ -31,13 +31,20 @@ export default function Navbar() {
   return (
     <nav className="flex items-end justify-between gap-x-2 py-8">
       <div>
-        <Link href="/" className="inline-block text-[1.25rem] font-bold">
+        <Link
+          href="/"
+          className="inline-block text-[1.25rem] font-bold"
+          data-cy="navbarLogo"
+        >
           Movieverse
         </Link>
       </div>
 
       <div className="flex items-center gap-x-8">
-        <ul className="hidden text-[0.8rem] text-[#9F939F] sm:flex sm:items-end sm:gap-x-8">
+        <ul
+          className="hidden text-[0.8rem] text-[#9F939F] sm:flex sm:items-end sm:gap-x-8"
+          data-cy="navbarLinks"
+        >
           {navbarLinks.map((link) => {
             return (
               <li key={`${link.name}`}>
@@ -48,7 +55,7 @@ export default function Navbar() {
         </ul>
 
         <div className="flex items-end gap-x-4 text-[#CFC9CF]">
-          <button className="pb-1 lg:hidden">
+          <button className="pb-1 lg:hidden" data-cy="searchIcon">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -68,6 +75,7 @@ export default function Navbar() {
           <button
             className="pb-0.5 sm:hidden"
             onClick={() => setIsSidebarOpen(true)}
+            data-cy="hamburgerMenu"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -89,6 +97,7 @@ export default function Navbar() {
             <input
               type="text"
               className="w-60 rounded bg-[#292429] py-2 pl-4 pr-12"
+              data-cy="searchInput"
             />
 
             <svg
