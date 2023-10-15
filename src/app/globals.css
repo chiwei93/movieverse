@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --background-hsl: 300, 6%, 7%;
+  --text-color: 300, 6%, 95%;
+}
+
+body {
+  background-color: hsl(var(--background-hsl));
+  color: hsl(var(--text-color));
+}
