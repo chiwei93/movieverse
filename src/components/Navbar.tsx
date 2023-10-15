@@ -1,9 +1,29 @@
 "use client";
 
-import Link from "next/link";
+import Link, { type LinkProps } from "next/link";
 import { useAtom } from "jotai";
 
 import { sidebarAtom } from "@/atoms/sidebarAtom";
+
+const navbarLinks = [
+  { href: "/movies", name: "movies" },
+  { href: "/series", name: "series" },
+  { href: "/animations", name: "animations" },
+];
+
+function NavbarLink({
+  href,
+  children,
+}: {
+  href: LinkProps["href"];
+  children: React.ReactNode;
+}) {
+  return (
+    <Link href={href} className="capitalize transition hover:text-[#CFC9CF]">
+      {children}
+    </Link>
+  );
+}
 
 export default function Navbar() {
   const [isSidebarOpen, setIsSidebarOpen] = useAtom(sidebarAtom);
@@ -18,17 +38,13 @@ export default function Navbar() {
 
       <div className="flex items-center gap-x-8">
         <ul className="hidden text-[0.8rem] text-[#9F939F] sm:flex sm:items-end sm:gap-x-8">
-          <li>
-            <Link href="/movies">Movies</Link>
-          </li>
-
-          <li>
-            <Link href="/series">Series</Link>
-          </li>
-
-          <li>
-            <Link href="/animations">Animations</Link>
-          </li>
+          {navbarLinks.map((link) => {
+            return (
+              <li key={`${link.name}`}>
+                <NavbarLink href={link.href}>{link.name}</NavbarLink>
+              </li>
+            );
+          })}
         </ul>
 
         <div className="flex items-end gap-x-4 text-[#CFC9CF]">
