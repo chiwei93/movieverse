@@ -1,6 +1,7 @@
 import type { PropsWithChildren } from "react";
 import Link, { type LinkProps } from "next/link";
 import NavigationDropdown from "@/components/NavigationDropdown/NavigationDropdown";
+import SearchDropdown from "@/components/SearchDropdown/SearchDropdown";
 
 const navbarLinks = [
   { href: "/movies", name: "movies" },
@@ -49,22 +50,7 @@ export default function Navbar() {
         </ul>
 
         <div className="flex items-end gap-x-4 text-[#CFC9CF]">
-          <button className="pb-1 lg:hidden" data-cy="searchIcon">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="h-5 w-5"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-              />
-            </svg>
-          </button>
+          <SearchDropdown />
 
           <NavigationDropdown navigationLinks={navbarLinks} />
 
