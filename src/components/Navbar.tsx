@@ -1,9 +1,6 @@
-"use client";
-
+import type { PropsWithChildren } from "react";
 import Link, { type LinkProps } from "next/link";
-import { useAtom } from "jotai";
-
-import { sidebarAtom } from "@/atoms/sidebarAtom";
+import NavigationDropdown from "./NavigationDropdown";
 
 const navbarLinks = [
   { href: "/movies", name: "movies" },
@@ -14,10 +11,9 @@ const navbarLinks = [
 function NavbarLink({
   href,
   children,
-}: {
+}: PropsWithChildren<{
   href: LinkProps["href"];
-  children: React.ReactNode;
-}) {
+}>) {
   return (
     <Link href={href} className="capitalize transition hover:text-[#CFC9CF]">
       {children}
@@ -26,8 +22,6 @@ function NavbarLink({
 }
 
 export default function Navbar() {
-  const [isSidebarOpen, setIsSidebarOpen] = useAtom(sidebarAtom);
-
   return (
     <nav className="flex items-end justify-between gap-x-2 py-8">
       <div>
@@ -72,26 +66,7 @@ export default function Navbar() {
             </svg>
           </button>
 
-          <button
-            className="pb-0.5 sm:hidden"
-            onClick={() => setIsSidebarOpen(true)}
-            data-cy="hamburgerMenu"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="h-6 w-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-              />
-            </svg>
-          </button>
+          <NavigationDropdown navigationLinks={navbarLinks} />
 
           <div className="relative hidden text-[0.8rem] text-[#CFC9CF] lg:block">
             <input
