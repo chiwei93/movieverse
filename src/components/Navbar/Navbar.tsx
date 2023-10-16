@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from "react";
 import Link, { type LinkProps } from "next/link";
-import NavigationDropdown from "./NavigationDropdown";
+import NavigationDropdown from "@/components/NavigationDropdown/NavigationDropdown";
 
 const navbarLinks = [
   { href: "/movies", name: "movies" },
