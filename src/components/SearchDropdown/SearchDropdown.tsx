@@ -5,7 +5,7 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 export default function SearchDropdown() {
   return (
     <DropdownMenu.Root>
-      <DropdownMenu.Trigger className="pb-1 lg:hidden" data-cy="searchIcon">
+      <DropdownMenu.Trigger className="pb-1" data-cy="searchIcon">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

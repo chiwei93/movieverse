@@ -11,7 +11,7 @@ export default function NavigationDropdown({ navigationLinks }: Props) {
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger
-        className="pb-0.5 text-[#CFC9CF] sm:hidden"
+        className="pb-0.5 text-[#CFC9CF]"
         data-cy="hamburgerMenu"
       >
         <svg
@@ -34,6 +34,7 @@ export default function NavigationDropdown({ navigationLinks }: Props) {
         <DropdownMenu.Content
           className="mt-2 rounded bg-[#292429] text-[0.8rem]"
           align="end"
+          data-cy="nav-links-dropdown"
         >
           {navigationLinks.map((link) => (
             <DropdownMenu.Item className="px-8 py-4" key={link.name}>

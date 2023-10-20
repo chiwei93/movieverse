@@ -1,5 +1,6 @@
 import type { PropsWithChildren } from "react";
 import Link, { type LinkProps } from "next/link";
+
 import NavigationDropdown from "@/components/NavigationDropdown/NavigationDropdown";
 import SearchDropdown from "@/components/SearchDropdown/SearchDropdown";
 
@@ -50,9 +51,13 @@ export default function Navbar() {
         </ul>
 
         <div className="flex items-end gap-x-4 text-[#CFC9CF]">
-          <SearchDropdown />
+          <div className="flex lg:hidden">
+            <SearchDropdown />
+          </div>
 
-          <NavigationDropdown navigationLinks={navbarLinks} />
+          <div className="flex sm:hidden">
+            <NavigationDropdown navigationLinks={navbarLinks} />
+          </div>
 
           <div className="relative hidden text-[0.8rem] text-[#CFC9CF] lg:block">
             <input
