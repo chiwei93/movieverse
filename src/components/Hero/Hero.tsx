@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useId } from "react";
 
 type RatingsProps = {
   rating: number;
@@ -10,6 +11,8 @@ const MAX_NUMBER_OF_STARS = 5;
 const MAX_NUMBER_OF_RATINGS = 10;
 
 function Ratings({ rating }: RatingsProps) {
+  const id = useId();
+
   const renderStars = (_rating: number) => {
     const numOfStars = Math.ceil(
       (_rating * MAX_NUMBER_OF_STARS) / MAX_NUMBER_OF_RATINGS,
@@ -24,6 +27,7 @@ function Ratings({ rating }: RatingsProps) {
           viewBox="0 0 24 24"
           fill="currentColor"
           className="h-4 w-4"
+          key={`star-${i}-${id}`}
         >
           <path
             fillRule="evenodd"
@@ -45,6 +49,7 @@ function Ratings({ rating }: RatingsProps) {
           strokeWidth={1.5}
           stroke="currentColor"
           className="h-4 w-4"
+          key={`star-${id}`}
         >
           <path
             strokeLinecap="round"
@@ -74,7 +79,7 @@ export default function Hero() {
   return (
     <div className="md:grid md:grid-cols-8 md:gap-x-4 lg:grid-cols-12">
       <div className="relative aspect-[2/3] object-cover md:col-span-5 lg:col-span-7 lg:aspect-[2/2.8]">
-        <Image src="/starwars.jpeg" alt="Hero image for movie" fill />
+        <Image src="/starwars.jpeg" alt="Hero image for movie" fill priority />
 
         <div className="absolute left-0 right-0 top-0 h-[5rem] bg-gradient-to-b from-[#121012]"></div>
         <div className="absolute bottom-0 left-0 right-0 h-[5rem] bg-gradient-to-t from-[#121012]"></div>
