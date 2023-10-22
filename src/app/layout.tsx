@@ -30,10 +30,10 @@ export default function RootLayout({
 
         <main>{children}</main>
 
-        <footer className="py-16">
+        <footer className="py-16 sm:pt-20 lg:pt-24">
           <hr className="h-[1px] border-none bg-[#514851]" />
 
-          <div className="flex flex-col items-center gap-y-2 pt-6 sm:flex-row sm:justify-between sm:gap-x-4 sm:gap-y-0">
+          <div className="flex flex-col items-center gap-y-2 pt-6 sm:flex-row sm:justify-between sm:gap-x-4 sm:gap-y-0 md:pt-8">
             <Link href="/" className="inline-block text-[1.25rem] font-bold">
               Movieverse
             </Link>
