@@ -2,6 +2,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 
+import Link from "next/link";
+
 import Navbar from "@/components/Navbar/Navbar";
 
 const poppins = Poppins({
@@ -27,6 +29,23 @@ export default function RootLayout({
         <Navbar />
 
         <main>{children}</main>
+
+        <footer className="py-16">
+          <hr className="h-[1px] border-none bg-[#514851]" />
+
+          <div className="flex flex-col items-center gap-y-2 pt-6 sm:flex-row sm:justify-between sm:gap-x-4 sm:gap-y-0">
+            <Link href="/" className="inline-block text-[1.25rem] font-bold">
+              Movieverse
+            </Link>
+
+            <span className="flex items-center gap-x-1">
+              <span className="inline-block text-[0.8rem]">&copy;</span>
+              <span className="inline-block text-[0.512rem]">
+                All rights reserved - Movieverse
+              </span>
+            </span>
+          </div>
+        </footer>
       </body>
     </html>
   );
