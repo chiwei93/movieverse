@@ -14,7 +14,6 @@ const renderStars = (rating: number, id: string) => {
   const numOfStars = Math.ceil(
     (rating * MAX_NUMBER_OF_STARS) / MAX_NUMBER_OF_RATINGS,
   );
-
   const stars: JSX.Element[] = [];
 
   for (let i = 1; i <= numOfStars; i++) {
