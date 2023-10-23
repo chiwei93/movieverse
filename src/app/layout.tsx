@@ -40,6 +40,7 @@ export default function RootLayout({
 
             <span className="flex items-center gap-x-1">
               <span className="inline-block text-[0.8rem]">&copy;</span>
+
               <span className="inline-block text-[0.512rem]">
                 All rights reserved - Movieverse
               </span>
