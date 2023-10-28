@@ -19,12 +19,12 @@ export default function GenresSection() {
 
   return (
     <>
-      <div className="flex items-end justify-between gap-x-2 pb-4">
+      <div className="flex items-center justify-between gap-x-2 pb-4">
         <h2 className="text-[1.563rem] font-bold uppercase lg:text-[1.953rem]">
           genres
         </h2>
 
-        <div>
+        <div className="flex items-center gap-x-2 md:gap-x-4">
           <button
             className="text-[#9F939F] transition hover:text-[#F3F1F3]"
             onClick={() => {
