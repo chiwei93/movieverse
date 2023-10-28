@@ -1,8 +1,13 @@
 import CardsGrid from "@/components/CardsGrid/CardsGrid";
 import GenresSection from "@/components/GenresSection/GenresSection";
 import Hero from "@/components/Hero/Hero";
-import MovieCard from "@/components/MovieCard/MovieCard";
+import Card from "@/components/Card/Card";
 import SectionTitle from "@/components/SectionTitle/SectionTitle";
+
+const bottomRow = {
+  year: 2020,
+  rating: 7,
+};
 
 export default function Home() {
   return (
@@ -22,14 +27,14 @@ export default function Home() {
             />
           </div>
 
-          <MovieCard />
-          <MovieCard />
-          <MovieCard />
-          <MovieCard />
-          <MovieCard />
-          <MovieCard />
-          <MovieCard />
-          <MovieCard />
+          <Card bottomRow={bottomRow} />
+          <Card bottomRow={bottomRow} />
+          <Card bottomRow={bottomRow} />
+          <Card bottomRow={bottomRow}/>
+          <Card bottomRow={bottomRow} />
+          <Card bottomRow={bottomRow} />
+          <Card bottomRow={bottomRow} />
+          <Card bottomRow={bottomRow} />
         </CardsGrid>
       </div>
 
@@ -48,14 +53,14 @@ export default function Home() {
             />
           </div>
 
-          <MovieCard />
-          <MovieCard />
-          <MovieCard />
-          <MovieCard />
-          <MovieCard />
-          <MovieCard />
-          <MovieCard />
-          <MovieCard />
+          <Card bottomRow={bottomRow} />
+          <Card bottomRow={bottomRow} />
+          <Card bottomRow={bottomRow} />
+          <Card bottomRow={bottomRow}/>
+          <Card bottomRow={bottomRow} />
+          <Card bottomRow={bottomRow} />
+          <Card bottomRow={bottomRow} />
+          <Card bottomRow={bottomRow} />
         </CardsGrid>
       </div>
     </>
