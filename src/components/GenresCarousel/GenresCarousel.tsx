@@ -2,16 +2,15 @@
 
 import Link, { type LinkProps } from "next/link";
 import {
-  type Dispatch,
-  type SetStateAction,
   useLayoutEffect,
   useState,
+  type Dispatch,
+  type SetStateAction,
 } from "react";
 import { Swiper as SwiperClass } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
-
-import { Swiper, SwiperSlide } from "swiper/react";
 
 type Genre = {
   name: string;
