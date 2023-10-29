@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 type CardProps = {
   name?: string;
@@ -14,8 +15,10 @@ export default function Card({
   bottomRow,
   name = "star wars: the last jedi",
 }: CardProps) {
+  const router = useRouter();
+
   return (
-    <div className="cursor-pointer">
+    <div className="cursor-pointer" onClick={() => router.push("/movies/1")}>
       <div className="relative aspect-[2/3]">
         <Image src="/starwars.jpeg" alt="movie poster" fill />
       </div>
