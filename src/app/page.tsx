@@ -30,7 +30,7 @@ export default function Home() {
           <Card bottomRow={bottomRow} />
           <Card bottomRow={bottomRow} />
           <Card bottomRow={bottomRow} />
-          <Card bottomRow={bottomRow}/>
+          <Card bottomRow={bottomRow} />
           <Card bottomRow={bottomRow} />
           <Card bottomRow={bottomRow} />
           <Card bottomRow={bottomRow} />
@@ -56,7 +56,7 @@ export default function Home() {
           <Card bottomRow={bottomRow} />
           <Card bottomRow={bottomRow} />
           <Card bottomRow={bottomRow} />
-          <Card bottomRow={bottomRow}/>
+          <Card bottomRow={bottomRow} />
           <Card bottomRow={bottomRow} />
           <Card bottomRow={bottomRow} />
           <Card bottomRow={bottomRow} />
