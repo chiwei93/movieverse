@@ -14,14 +14,18 @@ const genres = [
   { name: "mystery", href: "/genres/action" },
 ];
 
-export default function GenresSection() {
+type Props = {
+  title: string;
+}
+
+export default function GenresSection({ title }: Props) {
   const [swiper, setSwiper] = useState<Swiper | null>(null);
 
   return (
     <>
       <div className="flex items-center justify-between gap-x-2 pb-4">
         <h2 className="text-[1.563rem] font-bold uppercase lg:text-[1.953rem]">
-          genres
+          {title}
         </h2>
 
         <div className="flex items-center gap-x-2 md:gap-x-4">
