@@ -12,7 +12,7 @@ type Movie = {
   original_title: string;
   overview: string;
   poster_path: string;
-  media_type: string;
+  media_type?: string;
   genre_ids: number[];
   popularity: number;
   release_date: string;
