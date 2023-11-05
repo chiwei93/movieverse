@@ -1,7 +1,9 @@
 import type { Backdrop } from "./backdrop";
 import type { Genre } from "./genres";
 import type { ProductionCompany } from "./productionCompany";
+import { MovieReviewsResponse } from "./reviews";
 import type { SpokenLanguage } from "./spokenLanguage";
+import type { MovieVideosResponse } from "./videos";
 
 export type Movie = {
   adult: boolean;
@@ -106,6 +108,8 @@ export type MovieDetailsResponse = {
   video: boolean;
   vote_average: number;
   vote_count: number;
+  videos?: MovieVideosResponse;
+  reviews?: MovieReviewsResponse;
 };
 
 //get recommendations of similar movies

@@ -18,7 +18,7 @@ type Review = {
 //get all the reviews of the movie
 //https://api.themoviedb.org/3/movie/{movieid}/reviews?language=en-US&page=1
 export type MovieReviewsResponse = {
-  id: number;
+  id?: number;
   page: number;
   results: Review[];
   total_pages: number;

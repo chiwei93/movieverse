@@ -5,7 +5,7 @@ type VideoType =
   | "Teaser"
   | "Opening Credits";
 
-type Video = {
+export type Video = {
   iso_639_1: string;
   iso_3166_1: string;
   name: string;
@@ -21,7 +21,7 @@ type Video = {
 //get all the videos related to the movie
 //https://api.themoviedb.org/3/movie/{movieid}/videos?language=en-US
 export type MovieVideosResponse = {
-  id: number;
+  id?: number;
   results: Video[];
 };
 
