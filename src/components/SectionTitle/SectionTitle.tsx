@@ -15,7 +15,7 @@ export default function SectionTitle({
 }: Props) {
   return (
     <div>
-      <h2 className="text-[1.563rem] font-bold uppercase lg:text-[1.953rem]">
+      <h2 className="text-[1.563rem] font-bold uppercase lg:text-[1.953rem] lg:leading-8">
         {title}
       </h2>
 
