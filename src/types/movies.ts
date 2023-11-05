@@ -3,7 +3,7 @@ import type { Genre } from "./genres";
 import type { ProductionCompany } from "./productionCompany";
 import type { SpokenLanguage } from "./spokenLanguage";
 
-type Movie = {
+export type Movie = {
   adult: boolean;
   backdrop_path: string;
   id: number;
