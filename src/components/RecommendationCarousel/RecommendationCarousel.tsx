@@ -14,8 +14,8 @@ import "swiper/css";
 import Card from "@/components/Card/Card";
 
 const bottomRow = {
-  year: 2020,
   rating: 7,
+  releaseDate: "2023-04-05",
 };
 
 type RecommendationCarouselProps = {
@@ -65,22 +65,22 @@ export default function RecommendationCarousel({
       onSwiper={(swiper) => setSwiper(swiper)}
     >
       <SwiperSlide>
-        <Card bottomRow={bottomRow} />
+        <Card bottomRowProps={bottomRow} />
       </SwiperSlide>
       <SwiperSlide>
-        <Card bottomRow={bottomRow} />
+        <Card bottomRowProps={bottomRow} />
       </SwiperSlide>
       <SwiperSlide>
-        <Card bottomRow={bottomRow} />
+        <Card bottomRowProps={bottomRow} />
       </SwiperSlide>
       <SwiperSlide>
-        <Card bottomRow={bottomRow} />
+        <Card bottomRowProps={bottomRow} />
       </SwiperSlide>
       <SwiperSlide>
-        <Card bottomRow={bottomRow} />
+        <Card bottomRowProps={bottomRow} />
       </SwiperSlide>
       <SwiperSlide>
-        <Card bottomRow={bottomRow} />
+        <Card bottomRowProps={bottomRow} />
       </SwiperSlide>
     </Swiper>
   );

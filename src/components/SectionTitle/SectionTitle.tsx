@@ -4,9 +4,15 @@ type Props = {
   title: string;
   description?: string;
   href: LinkProps["href"];
+  shouldShowLink?: boolean;
 };
 
-export default function SectionTitle({ title, description, href }: Props) {
+export default function SectionTitle({
+  title,
+  description,
+  href,
+  shouldShowLink = true,
+}: Props) {
   return (
     <div>
       <h2 className="text-[1.563rem] font-bold uppercase lg:text-[1.953rem]">
@@ -14,17 +20,16 @@ export default function SectionTitle({ title, description, href }: Props) {
       </h2>
 
       {description && (
-        <p className="pt-2 text-[0.8rem] text-[#9F939F]">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem porro
-          iure deserunt ipsam.
-        </p>
+        <p className="pt-2 text-[0.8rem] text-[#9F939F]">{description}</p>
       )}
 
-      <div className="pt-2 md:pt-6">
-        <Link href={href} className="text-[0.8rem] text-[#F50057]">
-          See more
-        </Link>
-      </div>
+      {shouldShowLink && (
+        <div className="pt-2 md:pt-6">
+          <Link href={href} className="text-[0.8rem] text-[#F50057]">
+            See more
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

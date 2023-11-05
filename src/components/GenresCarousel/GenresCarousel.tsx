@@ -15,6 +15,7 @@ import "swiper/css";
 type Genre = {
   name: string;
   href: LinkProps["href"];
+  id: number;
 };
 
 type GenresCarouselProps = {

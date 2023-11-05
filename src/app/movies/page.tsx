@@ -4,8 +4,8 @@ import Card from "@/components/Card/Card";
 import SectionTitle from "@/components/SectionTitle/SectionTitle";
 
 const bottomRow = {
-  year: 2020,
   rating: 7,
+  releaseDate: "2023-04-05",
 };
 
 export default function Movies() {
@@ -26,14 +26,14 @@ export default function Movies() {
             />
           </div>
 
-          <Card bottomRow={bottomRow} />
-          <Card bottomRow={bottomRow} />
-          <Card bottomRow={bottomRow} />
-          <Card bottomRow={bottomRow}/>
-          <Card bottomRow={bottomRow} />
-          <Card bottomRow={bottomRow} />
-          <Card bottomRow={bottomRow} />
-          <Card bottomRow={bottomRow} />
+          <Card bottomRowProps={bottomRow} />
+          <Card bottomRowProps={bottomRow} />
+          <Card bottomRowProps={bottomRow} />
+          <Card bottomRowProps={bottomRow}/>
+          <Card bottomRowProps={bottomRow} />
+          <Card bottomRowProps={bottomRow} />
+          <Card bottomRowProps={bottomRow} />
+          <Card bottomRowProps={bottomRow} />
         </CardsGrid>
       </div>
     </>

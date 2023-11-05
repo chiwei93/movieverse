@@ -1,24 +1,37 @@
 "use client";
 
+import type { Genre } from "@/types/genres";
+
 import { useState } from "react";
 import Swiper from "swiper";
 
 import GenresCarousel from "@/components/GenresCarousel/GenresCarousel";
 
-const genres = [
-  { name: "action", href: "/genres/action" },
-  { name: "adventure", href: "/genres/action" },
-  { name: "comedy", href: "/genres/action" },
-  { name: "sci-fi", href: "/genres/action" },
-  { name: "romance", href: "/genres/action" },
-  { name: "mystery", href: "/genres/action" },
+// remove this default genre after development
+const testgenres = [
+  { name: "action", id: 1 },
+  { name: "adventure", id: 2 },
+  { name: "comedy", id: 3 },
+  { name: "sci-fi", id: 4 },
+  { name: "romance", id: 5 },
+  { name: "mystery", id: 6 },
 ];
 
 type Props = {
   title: string;
-}
+  genres?: Genre[];
+};
 
-export default function GenresSection({ title }: Props) {
+const generateGenresWithHref = (genres: Genre[]) => {
+  return genres.map((genre) => {
+    return {
+      ...genre,
+      href: `/genres/${genre.name}`,
+    };
+  });
+};
+
+export default function GenresSection({ title, genres = testgenres }: Props) {
   const [swiper, setSwiper] = useState<Swiper | null>(null);
 
   return (
@@ -76,7 +89,10 @@ export default function GenresSection({ title }: Props) {
       </div>
 
       <div className="">
-        <GenresCarousel genres={genres} setSwiper={setSwiper} />
+        <GenresCarousel
+          genres={generateGenresWithHref(genres)}
+          setSwiper={setSwiper}
+        />
       </div>
     </>
   );

@@ -3,35 +3,55 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
+// fix the type after integration with api
 type CardProps = {
   name?: string;
-  bottomRow?: {
+  bottomRowProps?: {
     rating: number;
-    year: number;
+    releaseDate: string;
   };
+  imageUrl?: string;
 };
 
+// remove the default name and imageurl
 export default function Card({
-  bottomRow,
+  bottomRowProps,
   name = "star wars: the last jedi",
+  imageUrl,
 }: CardProps) {
   const router = useRouter();
 
   return (
-    <div className="cursor-pointer" onClick={() => router.push("/movies/1")}>
+    <div
+      className="flex cursor-pointer flex-col"
+      onClick={() => router.push("/movies/1")}
+    >
       <div className="relative aspect-[2/3]">
-        <Image src="/starwars.jpeg" alt="movie poster" fill />
+        {/* remove the default src */}
+        <Image
+          src={
+            imageUrl
+              ? `https://image.tmdb.org/t/p/original${imageUrl}`
+              : "/starwars.jpeg"
+          }
+          alt="movie poster"
+          fill
+        />
       </div>
 
-      <div className="pb-1 pt-2 text-[0.8rem] font-semibold uppercase leading-tight xl:text-[1rem]">
+      <div className="pb-1 pt-2 text-[0.8rem] font-semibold uppercase leading-tight">
         {name}
       </div>
 
-      {bottomRow && (
-        <div className="flex items-end justify-between text-[0.64rem] xl:text-[0.8rem]">
-          <span className="block text-[#9F939F]">2020</span>
+      {bottomRowProps && (
+        <div className="mt-auto flex items-end justify-between text-[0.64rem] xl:text-[0.8rem]">
+          {bottomRowProps.releaseDate && (
+            <span className="block text-[#9F939F]">
+              {new Date(bottomRowProps.releaseDate).getFullYear()}
+            </span>
+          )}
 
-          <div className="flex items-center gap-x-1 text-[#F50057]">
+          <div className="ml-auto flex items-center gap-x-1 text-[#F50057]">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -45,7 +65,9 @@ export default function Card({
               />
             </svg>
 
-            <span className="block pt-[0.12rem]">7.0</span>
+            <span className="block pt-[0.12rem]">
+              {bottomRowProps.rating.toFixed(1)}
+            </span>
           </div>
         </div>
       )}
