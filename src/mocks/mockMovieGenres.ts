@@ -8,7 +8,7 @@ export const mockMovieGenres: MovieGenresResponse = {
     },
     {
       id: 12,
-      name: "Abenteuer",
+      name: "Adventure",
     },
     {
       id: 16,
@@ -16,15 +16,15 @@ export const mockMovieGenres: MovieGenresResponse = {
     },
     {
       id: 35,
-      name: "Komödie",
+      name: "Comedy",
     },
     {
       id: 80,
-      name: "Krimi",
+      name: "Crime",
     },
     {
       id: 99,
-      name: "Dokumentarfilm",
+      name: "Documentary",
     },
     {
       id: 18,
@@ -32,7 +32,7 @@ export const mockMovieGenres: MovieGenresResponse = {
     },
     {
       id: 10751,
-      name: "Familie",
+      name: "Family",
     },
     {
       id: 14,
@@ -40,7 +40,7 @@ export const mockMovieGenres: MovieGenresResponse = {
     },
     {
       id: 36,
-      name: "Historie",
+      name: "History",
     },
     {
       id: 27,
@@ -48,7 +48,7 @@ export const mockMovieGenres: MovieGenresResponse = {
     },
     {
       id: 10402,
-      name: "Musik",
+      name: "Music",
     },
     {
       id: 9648,
@@ -56,7 +56,7 @@ export const mockMovieGenres: MovieGenresResponse = {
     },
     {
       id: 10749,
-      name: "Liebesfilm",
+      name: "Romance",
     },
     {
       id: 878,
@@ -64,7 +64,7 @@ export const mockMovieGenres: MovieGenresResponse = {
     },
     {
       id: 10770,
-      name: "TV-Film",
+      name: "TV Movie",
     },
     {
       id: 53,
@@ -72,7 +72,7 @@ export const mockMovieGenres: MovieGenresResponse = {
     },
     {
       id: 10752,
-      name: "Kriegsfilm",
+      name: "War",
     },
     {
       id: 37,
