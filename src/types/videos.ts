@@ -1,10 +1,3 @@
-type VideoType =
-  | "Featurette"
-  | "Behind the Scenes"
-  | "Trailer"
-  | "Teaser"
-  | "Opening Credits";
-
 export type Video = {
   iso_639_1: string;
   iso_3166_1: string;
@@ -12,7 +5,7 @@ export type Video = {
   key: string;
   site: string;
   size: number;
-  type: VideoType;
+  type: string;
   official: boolean;
   published_at: string;
   id: string;

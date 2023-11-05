@@ -86,7 +86,7 @@ export type MovieDetailsResponse = {
     name: string;
     poster_path: string | null;
     backdrop_path: string | null;
-  };
+  } | null;
   budget: number;
   genres: Genre[];
   homepage: string;
@@ -110,6 +110,10 @@ export type MovieDetailsResponse = {
   vote_count: number;
   videos?: MovieVideosResponse;
   reviews?: MovieReviewsResponse;
+  production_countries?: {
+    iso_3166_1: string;
+    name: string;
+  }[];
 };
 
 //get recommendations of similar movies
