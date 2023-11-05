@@ -1,12 +1,10 @@
 "use client";
 
-import Link, { type LinkProps } from "next/link";
-import {
-  useLayoutEffect,
-  useState,
-  type Dispatch,
-  type SetStateAction,
-} from "react";
+import type { LinkProps } from "next/link";
+import type { Dispatch, SetStateAction } from "react";
+
+import Link from "next/link";
+import { useLayoutEffect, useState } from "react";
 import { Swiper as SwiperClass } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -63,10 +61,14 @@ export default function GenresCarousel({
       onSwiper={(swiper) => setSwiper(swiper)}
     >
       {genres.map((genre) => (
-        <SwiperSlide className="relative" key={genre.name}>
+        <SwiperSlide
+          className="relative"
+          key={genre.name}
+          style={{ height: "auto" }}
+        >
           <Link
             href={genre.href}
-            className="inline-block w-full rounded bg-[#1B181B] px-8 py-4 text-center text-[0.8rem] capitalize text-[#CFC9CF] xl:text-[1rem]"
+            className="flex h-full w-full items-center justify-center rounded bg-[#1B181B] px-8 py-4 text-center text-[0.8rem] capitalize text-[#CFC9CF] xl:text-[1rem]"
           >
             {genre.name}
           </Link>
