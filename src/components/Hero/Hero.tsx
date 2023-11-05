@@ -1,7 +1,10 @@
 "use client";
 
+import type { Movie } from "@/types/movies";
+
+import { useId, useState } from "react";
 import Image from "next/image";
-import { useId } from "react";
+import Link from "next/link";
 
 type RatingsProps = {
   rating: number;
@@ -11,7 +14,7 @@ const MAX_NUMBER_OF_STARS = 5;
 const MAX_NUMBER_OF_RATINGS = 10;
 
 const renderStars = (rating: number, id: string) => {
-  const numOfStars = Math.ceil(
+  const numOfStars = Math.round(
     (rating * MAX_NUMBER_OF_STARS) / MAX_NUMBER_OF_RATINGS,
   );
   const stars: JSX.Element[] = [];
@@ -45,7 +48,7 @@ const renderStars = (rating: number, id: string) => {
         strokeWidth={1.5}
         stroke="currentColor"
         className="h-4 w-4"
-        key={`star-${id}`}
+        key={`star-${id}-${outlineStars}`}
       >
         <path
           strokeLinecap="round"
@@ -74,11 +77,44 @@ function Ratings({ rating }: RatingsProps) {
   );
 }
 
-export default function Hero() {
+type HeroProps = {
+  movies: Movie[];
+};
+
+export default function Hero({ movies }: HeroProps) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const currentActiveSlide = movies[activeIndex];
+
+  console.log(currentActiveSlide)
+
+  const setNextSlide = () => {
+    if (activeIndex < movies.length - 1) {
+      setActiveIndex((prevIndex) => prevIndex + 1);
+    } else {
+      setActiveIndex(0);
+    }
+  };
+
+  const setPrevSlide = () => {
+    if (activeIndex > 0) {
+      setActiveIndex((prevIndex) => prevIndex - 1);
+    } else {
+      setActiveIndex(movies.length - 1);
+    }
+  };
+
   return (
-    <div className="md:grid md:grid-cols-8 md:gap-x-4 lg:grid-cols-12">
+    <div
+      className="md:grid md:grid-cols-8 md:gap-x-4 lg:grid-cols-12"
+      key={`hero-${currentActiveSlide.id}`}
+    >
       <div className="relative aspect-[2/3] object-cover md:col-span-5 lg:col-span-7 lg:aspect-[2/2.8]">
-        <Image src="/starwars.jpeg" alt="Hero image for movie" fill priority />
+        <Image
+          src={`https://image.tmdb.org/t/p/original${currentActiveSlide.poster_path}`}
+          alt={`Hero image for ${currentActiveSlide.title}`}
+          fill
+          priority
+        />
 
         <div className="absolute left-0 right-0 top-0 h-[5rem] bg-gradient-to-b from-[#121012]"></div>
         <div className="absolute bottom-0 left-0 right-0 h-[5rem] bg-gradient-to-t from-[#121012]"></div>
@@ -87,9 +123,12 @@ export default function Hero() {
       </div>
 
       <div className="md:col-span-3 lg:col-span-5">
-        <div className="flex justify-end py-4 md:justify-start md:py-6 lg:pb-8 lg:pt-16 xl:pb-12 xl:pt-24">
+        <div className="flex justify-end py-4 md:justify-start md:py-6 lg:pb-8 lg:pt-14 xl:pb-12">
           <div className="flex items-center gap-x-4">
-            <button className="text-[#9F939F] transition hover:text-[#F3F1F3]">
+            <button
+              className="text-[#9F939F] transition hover:text-[#F3F1F3]"
+              onClick={setPrevSlide}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -106,7 +145,10 @@ export default function Hero() {
               </svg>
             </button>
 
-            <button className="text-[#9F939F] transition hover:text-[#F3F1F3]">
+            <button
+              className="text-[#9F939F] transition hover:text-[#F3F1F3]"
+              onClick={setNextSlide}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -127,35 +169,31 @@ export default function Hero() {
 
         <div>
           <h1 className="text-[1.563rem] font-bold uppercase leading-7 text-[#F3F1F3] md:text-[1.953rem] md:leading-8 lg:text-[3.052rem] lg:leading-none">
-            star wars: the last jedi
+            {currentActiveSlide.title}
           </h1>
 
-          <div className="flex items-center gap-x-2 pb-1 pt-2 text-[0.8rem] text-[#9F939F] md:pb-2 md:pt-3 xl:text-[1rem]">
-            <span className="block">2020</span>
-
-            <span className="block h-1 w-1 rounded-full bg-[#9F939F]"></span>
-
-            <span className="block">Action, Adventure, Sci-fi</span>
+          <div className="pt-2">
+            <Ratings rating={currentActiveSlide.vote_average} />
           </div>
 
-          <div>
-            <Ratings rating={7.5} />
-          </div>
-
-          <div className="pb-6 pt-4 leading-7 text-[#CFC9CF] lg:pb-10 lg:pt-8 lg:leading-relaxed xl:pb-14 xl:pt-10 xl:text-[1.25rem]">
-            Rey seeks to learn the ways of the Jedi under Luke Skywalker, its
-            remaining member, to reinvigorate the Resistance&apos;s war against
-            the First Order.
+          <div className="pb-6 pt-4 leading-7 text-[#CFC9CF] lg:pb-10 lg:pt-8 lg:leading-relaxed xl:pb-14 xl:pt-10 xl:text-[1.13rem]">
+            {currentActiveSlide.overview}
           </div>
 
           <div className="grid grid-cols-2 gap-x-4 text-[0.8rem] md:grid-cols-1 md:gap-x-0 md:gap-y-4 lg:flex lg:gap-x-4 lg:gap-y-0 xl:text-[1rem]">
-            <button className="rounded border border-[#F50057] bg-[#F50057] px-4 py-2 text-white sm:px-8">
+            <Link
+              href="/"
+              className="rounded border border-[#F50057] bg-[#F50057] px-4 py-2 text-center text-white sm:px-8"
+            >
               Watch trailer
-            </button>
+            </Link>
 
-            <button className="rounded border border-[#F3F1F3] px-4 py-2 text-[#F3F1F3] sm:px-8">
+            <Link
+              href={`/movies/${currentActiveSlide.id}`}
+              className="inline-block rounded border border-[#F3F1F3] px-4 py-2 text-center text-[#F3F1F3] sm:px-8"
+            >
               See details
-            </button>
+            </Link>
           </div>
         </div>
       </div>
