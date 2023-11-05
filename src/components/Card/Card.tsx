@@ -34,7 +34,7 @@ export default function Card({
               ? `https://image.tmdb.org/t/p/original${imageUrl}`
               : "/starwars.jpeg"
           }
-          alt="movie poster"
+          alt={`poster for ${name}`}
           fill
         />
       </div>
