@@ -14,6 +14,7 @@ type CardProps = {
   imageUrl?: string | null;
   id?: number;
   type?: CardType;
+  imagePriority?: boolean;
 };
 
 const getUrl = (type: CardType, id?: number) => {
@@ -45,6 +46,7 @@ export default function Card({
   imageUrl,
   id,
   type = "movie",
+  imagePriority = false,
 }: CardProps) {
   return (
     <CardParent id={id} type={type}>
@@ -59,6 +61,7 @@ export default function Card({
           alt={`poster for ${name}`}
           fill
           sizes="(max-width: 0) 100%"
+          priority={imagePriority}
         />
       </div>
 

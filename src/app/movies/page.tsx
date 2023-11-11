@@ -51,7 +51,7 @@ export default async function Movies() {
             <SectionTitle
               title="popular"
               description="Most popular movies over the years"
-              href="/popular"
+              href="/movies/category/popular"
             />
           </div>
 
@@ -81,7 +81,7 @@ export default async function Movies() {
             <SectionTitle
               title="top rated"
               description="The top rated movies over the years"
-              href="/top-rated"
+              href="/movies/category/top-rated"
             />
           </div>
 
@@ -107,7 +107,7 @@ export default async function Movies() {
             <SectionTitle
               title="upcoming"
               description="Upcoming movies that are yet to be released"
-              href="/upcoming"
+              href="/movies/category/upcoming"
             />
           </div>
 

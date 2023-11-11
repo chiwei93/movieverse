@@ -55,7 +55,7 @@ export default async function Home() {
             <SectionTitle
               title="trending movies"
               description="Trending movies of the day"
-              href="/now-showing"
+              href="/movies/category/trending"
               shouldShowLink={
                 mockHomePageData.trendingMovies.results.length >
                 MAX_NUMBER_OF_CARD_SHOWN

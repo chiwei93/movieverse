@@ -161,6 +161,7 @@ export default async function IndividualMovie({
               alt={`Hero image for ${movie.title}`}
               fill
               priority
+              sizes="(max-width: 0) 100%"
             />
 
             <div className="absolute left-0 right-0 top-0 h-[5rem] bg-gradient-to-b from-[#121012]"></div>
