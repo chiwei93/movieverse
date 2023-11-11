@@ -117,11 +117,6 @@ export type MovieDetailsResponse = {
   recommendations?: RecommendedMoviesResponse;
 };
 
-export type MovieDetailData = {
-  movie: MovieDetailsResponse;
-  posters: Backdrop[];
-};
-
 //get recommendations of similar movies
 //https://api.themoviedb.org/3/movie/{movieid}/recommendations?language=en-US&page=1
 export type RecommendedMoviesResponse = {

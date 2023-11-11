@@ -46,7 +46,7 @@ export default async function Home() {
   return (
     <>
       <div className="md:pt-8 lg:pt-12">
-        <Hero movies={mockHomePageData.nowPlaying.results} />
+        <Hero movies={mockHomePageData.nowPlaying.results} key="homePage" />
       </div>
 
       <div className="pt-24">

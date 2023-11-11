@@ -1,4 +1,5 @@
-import type { MovieDetailData } from "@/types/movies";
+import type { MovieDetailData } from "@/types/movieDetailsPageData";
+
 import { mockMovieDetails } from "./mockMovieDetails";
 
 const mockImages = [

@@ -1,4 +1,5 @@
-import type { MovieDetailData, MovieDetailsResponse } from "@/types/movies";
+import type {  MovieDetailsResponse } from "@/types/movies";
+import type { MovieDetailData } from "@/types/movieDetailsPageData";
 
 import { Fragment } from "react";
 import Image from "next/image";
@@ -189,7 +190,7 @@ export default async function IndividualMovie({
                     />
                   </svg>
 
-                  <span>{movie.vote_average.toFixed(1)}</span>
+                  <span className="mt-0.5">{movie.vote_average.toFixed(1)}</span>
                 </span>
 
                 <span className="block h-1 w-1 rounded-full bg-[#9F939F]"></span>
