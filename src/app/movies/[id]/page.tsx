@@ -13,7 +13,7 @@ import { fetchData } from "@/utils/fetchData";
 import { mockMovieDetailsData } from "@/mocks/mockMovieDetailsData";
 import { sliceResultsLengthForCards } from "@/utils/sliceResultsToShow";
 
-const maxPostersToShow = 10;
+const maxPostersToShow = 16;
 const maxReviewToShow = 5;
 const maxReviewStringLength = 220;
 
@@ -264,12 +264,6 @@ export default async function IndividualMovie({
             <h2 className="text-[1.25rem] font-medium text-[#877887] md:text-[1.563rem] lg:text-[1.953rem]">
               Posters
             </h2>
-
-            <div>
-              <Link href="/" className="text-[0.8rem] text-[#F50057]">
-                See more
-              </Link>
-            </div>
           </div>
 
           {sliceResultsLengthForCards(posters, maxPostersToShow).map(
