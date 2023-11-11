@@ -85,8 +85,6 @@ export default function Hero({ movies }: HeroProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const currentActiveSlide = movies[activeIndex];
 
-  console.log(currentActiveSlide)
-
   const setNextSlide = () => {
     if (activeIndex < movies.length - 1) {
       setActiveIndex((prevIndex) => prevIndex + 1);
@@ -114,6 +112,7 @@ export default function Hero({ movies }: HeroProps) {
           alt={`Hero image for ${currentActiveSlide.title}`}
           fill
           priority
+          sizes="(max-width: 0) 100%"
         />
 
         <div className="absolute left-0 right-0 top-0 h-[5rem] bg-gradient-to-b from-[#121012]"></div>

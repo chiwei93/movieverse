@@ -58,6 +58,7 @@ export default function Card({
           }
           alt={`poster for ${name}`}
           fill
+          sizes="(max-width: 0) 100%"
         />
       </div>
 
