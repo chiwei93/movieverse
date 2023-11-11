@@ -89,7 +89,7 @@ export default function Card({
               />
             </svg>
 
-            <span className="block pt-[0.12rem]">
+            <span className="block pt-[0.12rem] font-semibold">
               {bottomRowProps.rating.toFixed(1)}
             </span>
           </div>
