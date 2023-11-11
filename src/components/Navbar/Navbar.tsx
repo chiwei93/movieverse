@@ -7,7 +7,6 @@ import SearchDropdown from "@/components/SearchDropdown/SearchDropdown";
 const navbarLinks = [
   { href: "/movies", name: "movies" },
   { href: "/series", name: "series" },
-  { href: "/animations", name: "animations" },
 ];
 
 function NavbarLink({
