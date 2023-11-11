@@ -1,7 +1,8 @@
-"use client";
+import type { PropsWithChildren } from "react";
+import type { CardType } from "@/types/cardType";
 
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 // fix the type after integration with api
 type CardProps = {
@@ -10,22 +11,43 @@ type CardProps = {
     rating: number;
     releaseDate: string;
   };
-  imageUrl?: string;
+  imageUrl?: string | null;
+  id?: number;
+  type?: CardType;
 };
+
+const getUrl = (type: CardType, id?: number) => {
+  if (type === "movie") return `/movies/${id}`;
+  if (type === "tv-show") return `/tvshows/${id}`;
+  return "";
+};
+
+function CardParent({
+  id,
+  type,
+  children,
+}: PropsWithChildren<{ id?: number; type: CardType }>) {
+  const url = getUrl(type, id);
+
+  return type !== "poster" ? (
+    <Link href={url} className="flex cursor-pointer flex-col">
+      {children}
+    </Link>
+  ) : (
+    <div className="flex flex-col">{children}</div>
+  );
+}
 
 // remove the default name and imageurl
 export default function Card({
   bottomRowProps,
   name = "star wars: the last jedi",
   imageUrl,
+  id,
+  type = "movie",
 }: CardProps) {
-  const router = useRouter();
-
   return (
-    <div
-      className="flex cursor-pointer flex-col"
-      onClick={() => router.push("/movies/1")}
-    >
+    <CardParent id={id} type={type}>
       <div className="relative aspect-[2/3]">
         {/* remove the default src */}
         <Image
@@ -39,9 +61,11 @@ export default function Card({
         />
       </div>
 
-      <div className="pb-1 pt-2 text-[0.8rem] font-semibold uppercase leading-tight">
-        {name}
-      </div>
+      {type !== "poster" && (
+        <div className="pb-1 pt-2 text-[0.8rem] font-semibold uppercase leading-tight">
+          {name}
+        </div>
+      )}
 
       {bottomRowProps && (
         <div className="mt-auto flex items-end justify-between text-[0.64rem] xl:text-[0.8rem]">
@@ -71,6 +95,6 @@ export default function Card({
           </div>
         </div>
       )}
-    </div>
+    </CardParent>
   );
 }

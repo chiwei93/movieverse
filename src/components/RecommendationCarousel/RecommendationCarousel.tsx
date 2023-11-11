@@ -1,11 +1,10 @@
 "use client";
 
-import {
-  useLayoutEffect,
-  useState,
-  type Dispatch,
-  type SetStateAction,
-} from "react";
+import type { CardType } from "@/types/cardType";
+import type { Dispatch, SetStateAction } from "react";
+import type { RecommendedMoviesResponse } from "@/types/movies";
+
+import { useLayoutEffect, useState } from "react";
 import { Swiper as SwiperClass } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -13,13 +12,14 @@ import "swiper/css";
 
 import Card from "@/components/Card/Card";
 
-const bottomRow = {
-  rating: 7,
-  releaseDate: "2023-04-05",
-};
+import { sliceResultsLengthForCards } from "@/utils/sliceResultsToShow";
+
+const maxSlidesToShow = 24;
 
 type RecommendationCarouselProps = {
   setSwiper: Dispatch<SetStateAction<SwiperClass | null>>;
+  type: CardType;
+  movies: RecommendedMoviesResponse["results"];
 };
 
 const GAP_BETWEEN_SLIDES = 16;
@@ -33,6 +33,8 @@ const SLIDES_IN_MOBILE = 2;
 
 export default function RecommendationCarousel({
   setSwiper,
+  type,
+  movies,
 }: RecommendationCarouselProps) {
   const [slidesPerView, setSlidePerView] = useState(SLIDES_IN_TABLETS);
 
@@ -64,24 +66,20 @@ export default function RecommendationCarousel({
       slidesPerView={slidesPerView}
       onSwiper={(swiper) => setSwiper(swiper)}
     >
-      <SwiperSlide>
-        <Card bottomRowProps={bottomRow} />
-      </SwiperSlide>
-      <SwiperSlide>
-        <Card bottomRowProps={bottomRow} />
-      </SwiperSlide>
-      <SwiperSlide>
-        <Card bottomRowProps={bottomRow} />
-      </SwiperSlide>
-      <SwiperSlide>
-        <Card bottomRowProps={bottomRow} />
-      </SwiperSlide>
-      <SwiperSlide>
-        <Card bottomRowProps={bottomRow} />
-      </SwiperSlide>
-      <SwiperSlide>
-        <Card bottomRowProps={bottomRow} />
-      </SwiperSlide>
+      {sliceResultsLengthForCards(movies, maxSlidesToShow).map((movie) => (
+        <SwiperSlide key={movie.id}>
+          <Card
+            type={type}
+            id={movie.id}
+            imageUrl={movie.poster_path}
+            name={movie.title}
+            bottomRowProps={{
+              rating: movie.vote_average,
+              releaseDate: movie.release_date,
+            }}
+          />
+        </SwiperSlide>
+      ))}
     </Swiper>
   );
 }

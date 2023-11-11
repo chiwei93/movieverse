@@ -74,6 +74,7 @@ export default async function Home() {
               key={movie.id}
               name={movie.title}
               imageUrl={movie.poster_path}
+              id={movie.id}
             />
           ))}
         </CardsGrid>

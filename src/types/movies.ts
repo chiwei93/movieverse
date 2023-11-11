@@ -1,19 +1,19 @@
 import type { Backdrop } from "./backdrop";
 import type { Genre } from "./genres";
 import type { ProductionCompany } from "./productionCompany";
-import { MovieReviewsResponse } from "./reviews";
+import type { MovieReviewsResponse } from "./reviews";
 import type { SpokenLanguage } from "./spokenLanguage";
 import type { MovieVideosResponse } from "./videos";
 
 export type Movie = {
   adult: boolean;
-  backdrop_path: string;
+  backdrop_path: string | null;
   id: number;
   title: string;
   original_language: string;
   original_title: string;
   overview: string;
-  poster_path: string;
+  poster_path: string | null;
   media_type?: string;
   genre_ids: number[];
   popularity: number;
@@ -114,6 +114,12 @@ export type MovieDetailsResponse = {
     iso_3166_1: string;
     name: string;
   }[];
+  recommendations?: RecommendedMoviesResponse;
+};
+
+export type MovieDetailData = {
+  movie: MovieDetailsResponse;
+  posters: Backdrop[];
 };
 
 //get recommendations of similar movies
