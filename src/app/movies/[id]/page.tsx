@@ -21,16 +21,21 @@ type ReviewProps = {
   rating: number | null;
   date: string;
   content: string;
+  reviewUrl: string;
 };
 
-function Review({ author, rating, date, content }: ReviewProps) {
+function Review({ author, rating, date, content, reviewUrl }: ReviewProps) {
   const slicedContent =
     content.length > maxReviewStringLength
       ? `${content.slice(0, maxReviewStringLength)}...`
       : content;
 
   return (
-    <Link href="" className="col-span-2 rounded bg-[#1B181B] p-4 sm:p-6">
+    <Link
+      href={reviewUrl}
+      className="col-span-2 rounded bg-[#1B181B] p-4 sm:p-6"
+      target="_blank"
+    >
       <div className="pb-1 text-[0.8rem] text-[#CFC9CF]">{author}</div>
 
       <div className="flex items-center gap-x-2 pb-4 text-[0.64rem] text-[#9F939F]">
@@ -251,40 +256,6 @@ export default async function IndividualMovie({
         </div>
       )}
 
-      {/* <div className="pt-16 md:pt-24 lg:pt-28">
-        <CardsGrid>
-          <div className="col-span-2 pt-4 sm:pt-6">
-            <h2 className="text-[1.25rem] font-medium text-[#877887] md:text-[1.563rem] lg:text-[1.953rem]">
-              Directors
-            </h2>
-          </div>
-
-          <Card />
-          <Card />
-        </CardsGrid>
-      </div>
-
-      <div className="pt-16 md:pt-24 lg:pt-28">
-        <CardsGrid>
-          <div className="col-span-2 flex items-end justify-between gap-x-2 pt-4 sm:flex-col sm:items-start sm:justify-normal sm:gap-x-0 sm:gap-y-2 sm:pt-6 md:gap-y-6">
-            <h2 className="text-[1.25rem] font-medium text-[#877887] md:text-[1.563rem] lg:text-[1.953rem]">
-              Casts
-            </h2>
-
-            <div>
-              <Link href="/" className="text-[0.8rem] text-[#F50057]">
-                See more
-              </Link>
-            </div>
-          </div>
-
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-        </CardsGrid>
-      </div> */}
-
       <div className="pt-16 md:pt-24 lg:pt-28">
         <CardsGrid>
           <div className="col-span-2 flex items-end justify-between gap-x-2 pt-4 sm:flex-col sm:items-start sm:justify-normal sm:gap-x-0 sm:gap-y-2 sm:pt-6 md:gap-y-6">
@@ -337,6 +308,7 @@ export default async function IndividualMovie({
                 rating={review.author_details.rating}
                 content={review.content}
                 date={review.updated_at ?? review.created_at}
+                reviewUrl={review.url}
               />
             ))}
           </CardsGrid>
