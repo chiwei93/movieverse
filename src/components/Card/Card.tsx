@@ -30,7 +30,7 @@ function CardParent({
   const url = getUrl(type, id);
 
   return type !== "poster" ? (
-    <Link href={url} className="flex cursor-pointer flex-col">
+    <Link href={url} className="flex h-full cursor-pointer flex-col">
       {children}
     </Link>
   ) : (

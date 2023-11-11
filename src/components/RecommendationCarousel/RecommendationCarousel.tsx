@@ -67,7 +67,11 @@ export default function RecommendationCarousel({
       onSwiper={(swiper) => setSwiper(swiper)}
     >
       {sliceResultsLengthForCards(movies, maxSlidesToShow).map((movie) => (
-        <SwiperSlide key={movie.id}>
+        <SwiperSlide
+          key={movie.id}
+          style={{ height: "auto" }}
+          className="relative"
+        >
           <Card
             type={type}
             id={movie.id}
