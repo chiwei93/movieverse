@@ -1,53 +1,43 @@
-import type { MovieCategoryPageData } from "@/types/movieCategoryPageData";
+import type { GenrePageData } from "@/types/genrePageData";
 
 import Link from "next/link";
 
-import Card from "@/components/Card/Card";
 import CardsGrid from "@/components/CardsGrid/CardsGrid";
-
-import { fetchData } from "@/utils/fetchData";
-import { mockMovieCategoryData } from "@/mocks/mockMovieCategoryData";
+import Card from "@/components/Card/Card";
 import Pagination from "@/components/Pagination/Pagination";
 
-type MovieCategoryProps = {
+import { fetchData } from "@/utils/fetchData";
+import { mockGenrePageData } from "@/mocks/mockGenrePageData";
+
+type GenreProps = {
+  params: { genre: string };
   searchParams: { page: string };
-  params: { category: string };
 };
 
-async function getMovieCategoryData(
-  category: string,
+async function getGenrePageData(
+  genre: string,
   page: number,
-): Promise<MovieCategoryPageData> {
-  const urlMap: Map<string, string> = new Map([
-    ["trending", "/trending/movie/day?language=en-US"],
-    ["now-playing", "/movie/now_playing?language=en-US"],
-    ["popular", "/movie/popular?language=en-US"],
-    ["top-rated", "/movie/top_rated?language=en-US"],
-    ["upcoming", "/movie/upcoming?language=en-US"],
-  ]);
-
+): Promise<GenrePageData> {
   try {
-    const url = urlMap.get(category);
-    return await fetchData(`${url}&page=${page}`);
+    return await fetchData(
+      `/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc&with_genres=${genre}`,
+    );
   } catch (err) {
     if (err instanceof Error) throw new Error(err.message);
     throw new Error("Internal server error: Failed to fetch data");
   }
 }
 
-export default async function MovieCategory({
-  searchParams,
-  params,
-}: MovieCategoryProps) {
+export default async function Genre({ params, searchParams }: GenreProps) {
   const page = parseInt(searchParams.page ?? 1);
-  // const res = await getMovieCategoryData(params.category, searchParams.page);
-  const res = mockMovieCategoryData;
+  // const res = await getGenrePageData(params.genre, page);
+  const res = mockGenrePageData;
 
   return (
-    <div className="md:pt-8">
+    <div className="md:pt-8 lg:pt-12">
       <div className="flex items-end justify-between gap-x-2 pt-4 sm:flex-col sm:items-start sm:justify-normal sm:gap-x-0 sm:gap-y-2 sm:pt-6 md:gap-y-2">
         <h2 className="text-[1.25rem] font-medium capitalize text-[#877887] md:text-[1.563rem] lg:text-[1.953rem]">
-          {params.category.split("-").join(" ")}
+          {params.genre}
         </h2>
 
         <div>
@@ -64,9 +54,9 @@ export default async function MovieCategory({
               key={movie.id}
               id={movie.id}
               type="movie"
+              imagePriority
               imageUrl={movie.poster_path}
               name={movie.title}
-              imagePriority
               bottomRowProps={{
                 rating: movie.vote_average,
                 releaseDate: movie.release_date,
@@ -78,7 +68,7 @@ export default async function MovieCategory({
 
       <div className="flex justify-end pt-20 lg:pt-32">
         <Pagination
-          baseUrl={`/movies/category/${params.category}`}
+          baseUrl={`/movies/genres/${params.genre}`}
           currentPage={page}
           totalPages={res.total_pages}
         />

@@ -1,4 +1,4 @@
-import type {  MovieDetailsResponse } from "@/types/movies";
+import type { MovieDetailsResponse } from "@/types/movies";
 import type { MovieDetailData } from "@/types/movieDetailsPageData";
 
 import { Fragment } from "react";
@@ -136,11 +136,13 @@ async function getMovieDetailData(movieId: number): Promise<MovieDetailData> {
   }
 }
 
+type IndividualMovieProps = {
+  params: { id: number };
+};
+
 export default async function IndividualMovie({
   params,
-}: {
-  params: { id: number };
-}) {
+}: IndividualMovieProps) {
   // const res = await getMovieDetailData(params.id);
   const res = mockMovieDetailsData;
   const movie = res.movie;
@@ -191,7 +193,9 @@ export default async function IndividualMovie({
                     />
                   </svg>
 
-                  <span className="mt-0.5">{movie.vote_average.toFixed(1)}</span>
+                  <span className="mt-0.5">
+                    {movie.vote_average.toFixed(1)}
+                  </span>
                 </span>
 
                 <span className="block h-1 w-1 rounded-full bg-[#9F939F]"></span>

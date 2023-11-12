@@ -26,7 +26,7 @@ const generateGenresWithHref = (genres: Genre[]) => {
   return genres.map((genre) => {
     return {
       ...genre,
-      href: `/genres/${genre.name}`,
+      href: `/movies/genres/${genre.name.toLowerCase()}`,
     };
   });
 };
