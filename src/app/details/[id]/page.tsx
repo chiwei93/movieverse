@@ -100,7 +100,6 @@ async function getDetailPageData(
   }
 }
 
-// release date can be empty string
 // prepare a default hero image for empty poster_path
 
 export default async function DetailsPage({
