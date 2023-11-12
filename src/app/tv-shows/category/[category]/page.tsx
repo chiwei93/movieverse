@@ -1,31 +1,32 @@
-import type { MovieCategoryPageData } from "@/types/movieCategoryPageData";
+import type { TVCategoryPageData } from "@/types/tvCategoryPageData";
 
 import Link from "next/link";
 
-import Card from "@/components/Card/Card";
 import CardsGrid from "@/components/CardsGrid/CardsGrid";
-
-import { fetchData } from "@/utils/fetchData";
-import { mockMovieCategoryData } from "@/mocks/mockMovieCategoryData";
+import Card from "@/components/Card/Card";
 import Pagination from "@/components/Pagination/Pagination";
 
-type MovieCategoryProps = {
+import { fetchData } from "@/utils/fetchData";
+
+import { mockTVCategoryPageData } from "@/mocks/mockTVCategoryPageData";
+
+type TVCategoryPageProps = {
   searchParams: { page: string };
   params: { category: string };
 };
 
-const urlMap: Map<string, string> = new Map([
-  ["trending", "/trending/movie/day?language=en-US"],
-  ["now-playing", "/movie/now_playing?language=en-US"],
-  ["popular", "/movie/popular?language=en-US"],
-  ["top-rated", "/movie/top_rated?language=en-US"],
-  ["upcoming", "/movie/upcoming?language=en-US"],
+const urlMap = new Map<string, string>([
+  ["trending", "/trending/tv/day?language=en-US"],
+  ["top-rated", "/tv/top_rated?language=en-US&page=1"],
+  ["on-air", "/tv/on_the_air?language=en-US&page=1"],
+  ["airing-today", "/tv/airing_today?language=en-US&page=1"],
+  ["popular", "/tv/popular?language=en-US&page=1"],
 ]);
 
-async function getMovieCategoryData(
+async function getTVCategoryData(
   category: string,
   page: number,
-): Promise<MovieCategoryPageData> {
+): Promise<TVCategoryPageData> {
   try {
     const url = urlMap.get(category);
     return await fetchData(`${url}&page=${page}`);
@@ -35,13 +36,13 @@ async function getMovieCategoryData(
   }
 }
 
-export default async function MovieCategory({
-  searchParams,
+export default async function TVShowCategoryPage({
   params,
-}: MovieCategoryProps) {
+  searchParams,
+}: TVCategoryPageProps) {
   const page = parseInt(searchParams.page ?? 1);
-  // const res = await getMovieCategoryData(params.category, page);
-  const res = mockMovieCategoryData;
+  // const res = await getTVCategoryData(params.category, page);
+  const res = mockTVCategoryPageData;
 
   return (
     <div className="md:pt-8">
@@ -59,17 +60,17 @@ export default async function MovieCategory({
 
       <div className="pt-6 md:pt-10">
         <CardsGrid lesserCols>
-          {res.results.map((movie) => (
+          {res.results.map((tv) => (
             <Card
-              key={movie.id}
-              id={movie.id}
-              type="movie"
-              imageUrl={movie.poster_path}
-              name={movie.title}
+              key={tv.id}
+              id={tv.id}
+              type="tv-show"
+              imageUrl={tv.poster_path}
+              name={tv.name}
               imagePriority
               bottomRowProps={{
-                rating: movie.vote_average,
-                releaseDate: movie.release_date,
+                rating: tv.vote_average,
+                releaseDate: tv.first_air_date,
               }}
             />
           ))}
@@ -78,7 +79,7 @@ export default async function MovieCategory({
 
       <div className="flex justify-end pt-20 lg:pt-32">
         <Pagination
-          baseUrl={`/movies/category/${params.category}`}
+          baseUrl={`/tv-shows/category/${params.category}`}
           currentPage={page}
           totalPages={res.total_pages}
         />
