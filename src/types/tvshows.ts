@@ -140,3 +140,17 @@ export type SearchTVShowResponse = {
   total_pages: number;
   total_results: number;
 };
+
+export type AiringTodayTVShowResponse = {
+  page: number;
+  results: TVShow[];
+  total_pages: number;
+  total_results: number;
+};
+
+export type OnAirTVShowResponse = {
+  page: number;
+  results: TVShow[];
+  total_pages: number;
+  total_results: number;
+};
