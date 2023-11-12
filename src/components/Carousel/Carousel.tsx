@@ -36,8 +36,6 @@ export default function Carousel({
   const [swiper, setSwiper] = useState<SwiperClass | null>(null);
   const [slidesPerView, setSlidePerView] = useState(SLIDES_IN_TABLETS);
 
-  console.log(slidesPerView, "value of slides per view");
-
   useLayoutEffect(() => {
     const resizeNumberOfSlides = () => {
       if (window.innerWidth >= DESKTOP_VIEWPORT) {
