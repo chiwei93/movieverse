@@ -1,5 +1,5 @@
-import type { MovieDetailsResponse } from "@/types/movies";
-import type { MovieDetailData } from "@/types/movieDetailsPageData";
+import type { TVShowDetailsPageData } from "@/types/tvDetailsPageData";
+import type { TVShowsDetailsResponse } from "@/types/tvshows";
 
 import { Fragment } from "react";
 import Image from "next/image";
@@ -7,24 +7,24 @@ import Link from "next/link";
 
 import CardsGrid from "@/components/CardsGrid/CardsGrid";
 import Card from "@/components/Card/Card";
-import RecommendationSection from "@/components/RecommendationSection/RecommendationSection";
 import Review from "@/components/Review/Review";
 
 import { fetchData } from "@/utils/fetchData";
-import { mockMovieDetailsData } from "@/mocks/mockMovieDetailsData";
 import { sliceResultsLengthForCards } from "@/utils/sliceResultsToShow";
+import { mockTVShowDetailPageData } from "@/mocks/mockTVShowDetailPageData";
+import RecommendationSection from "@/components/RecommendationSection/RecommendationSection";
+
+type TVShowProps = {
+  params: {
+    id: string;
+  };
+};
 
 const maxPostersToShow = 16;
 const maxReviewToShow = 5;
 
-const convertRunTimeIntoHoursAndMinutes = (runtime: number): string => {
-  const hours = Math.floor(runtime / 60);
-  const minutes = runtime - hours * 60;
-  return `${hours}h ${minutes}min`;
-};
-
 const getYoutubeTrailerIdFromVideosRes = (
-  res: MovieDetailsResponse["videos"],
+  res: TVShowsDetailsResponse["videos"],
 ): string | null => {
   if (!res) return null;
 
@@ -59,19 +59,21 @@ const getYoutubeTrailerIdFromVideosRes = (
   return filteredVideos[0].key;
 };
 
-async function getMovieDetailData(movieId: number): Promise<MovieDetailData> {
+async function getTVShowDetailPageData(
+  id: number,
+): Promise<TVShowDetailsPageData> {
   try {
     const promises = [
       fetchData(
-        `/movie/${movieId}?append_to_response=videos,reviews,recommendations&language=en-US`,
+        `/tv/${id}?append_to_response=videos,recommendations,reviews&language=en-US`,
       ),
-      fetchData(`/movie/${movieId}/images`),
+      fetchData(`/tv/${id}/images`),
     ];
 
     const res = await Promise.all(promises);
 
     return {
-      movie: res[0],
+      tvshow: res[0],
       posters: res[1].posters.length > 0 ? res[1].posters : res[1].backdrops,
     };
   } catch (err) {
@@ -80,18 +82,11 @@ async function getMovieDetailData(movieId: number): Promise<MovieDetailData> {
   }
 }
 
-type IndividualMovieProps = {
-  params: { id: string };
-};
-
-export default async function IndividualMovie({
-  params,
-}: IndividualMovieProps) {
-  // const res = await getMovieDetailData(parseInt(params.id));
-  const res = mockMovieDetailsData;
-  const movie = res.movie;
-  const posters = res.posters;
-  const trailerKey = getYoutubeTrailerIdFromVideosRes(movie.videos);
+export default async function IndividualTVShowPage({ params }: TVShowProps) {
+  // const res = await getTVShowDetailPageData(parseInt(params.id));
+  const res = mockTVShowDetailPageData;
+  const { tvshow, posters } = res;
+  const trailerKey = getYoutubeTrailerIdFromVideosRes(tvshow.videos);
 
   return (
     <>
@@ -100,11 +95,11 @@ export default async function IndividualMovie({
           <div className="relative aspect-[2/3] object-cover md:col-span-5 lg:col-span-7 lg:aspect-[2/2.8]">
             <Image
               src={
-                movie.poster_path
-                  ? `https://image.tmdb.org/t/p/original${movie.poster_path}`
+                tvshow.poster_path
+                  ? `https://image.tmdb.org/t/p/original${tvshow.poster_path}`
                   : "/starwars.jpeg"
               }
-              alt={`Hero image for ${movie.title}`}
+              alt={`Hero image for ${tvshow.name}`}
               fill
               priority
               sizes="(max-width: 0) 100%"
@@ -119,7 +114,7 @@ export default async function IndividualMovie({
           <div className="pt-8 md:col-span-3 lg:col-span-5 lg:pt-16">
             <div>
               <h1 className="text-[1.563rem] font-bold uppercase leading-7 text-[#F3F1F3] md:text-[1.953rem] md:leading-8 lg:text-[3.052rem] lg:leading-none">
-                {movie.title}
+                {tvshow.name}
               </h1>
 
               <div className="flex items-center gap-x-4 py-2 text-[0.8rem] text-[#9F939F] md:py-3 xl:text-[1rem]">
@@ -138,25 +133,25 @@ export default async function IndividualMovie({
                   </svg>
 
                   <span className="mt-0.5">
-                    {movie.vote_average.toFixed(1)}
+                    {tvshow.vote_average.toFixed(1)}
                   </span>
                 </span>
 
                 <span className="block h-1 w-1 rounded-full bg-[#9F939F]"></span>
 
                 <span className="block">
-                  {new Date(movie.release_date).getFullYear()}
+                  {new Date(tvshow.first_air_date).getFullYear()}
                 </span>
 
                 <span className="block h-1 w-1 rounded-full bg-[#9F939F]"></span>
 
-                <span className="block">
-                  {convertRunTimeIntoHoursAndMinutes(movie.runtime)}
+                <span className="block capitalize">
+                  {tvshow.episode_run_time} episodes
                 </span>
               </div>
 
               <div className="flex flex-wrap items-center gap-2">
-                {movie.genres.map((genre) => (
+                {tvshow.genres.map((genre) => (
                   <span
                     className="block rounded bg-[#1B181B] px-6 py-2 text-[0.8rem] capitalize text-[#9F939F]"
                     key={genre.id}
@@ -167,7 +162,7 @@ export default async function IndividualMovie({
               </div>
 
               <div className="py-6 leading-7 text-[#CFC9CF] lg:py-10 lg:leading-relaxed xl:py-14 xl:text-[1.25rem]">
-                {movie.overview}
+                {tvshow.overview}
               </div>
 
               <div className="grid grid-cols-2 gap-x-4 text-[0.8rem] md:grid-cols-1 md:gap-x-0 md:gap-y-4 lg:flex lg:gap-x-4 lg:gap-y-0 xl:text-[1rem]">
@@ -184,20 +179,20 @@ export default async function IndividualMovie({
         </div>
       </div>
 
-      {movie.production_companies.length > 0 && (
+      {tvshow.production_companies.length > 0 && (
         <div className="pt-16 md:pt-24 lg:pt-28">
           <h2 className="pb-4 text-[1.25rem] font-medium text-[#877887] md:text-[1.563rem] lg:text-[1.953rem]">
             Production companies
           </h2>
 
           <div className="flex items-center gap-x-3">
-            {movie.production_companies.map((company, index) => (
+            {tvshow.production_companies.map((company, index) => (
               <Fragment key={company.id}>
                 <span className="block font-semibold capitalize text-[#CFC9CF]">
                   {company.name}
                 </span>
 
-                {index < movie.production_companies.length - 1 && (
+                {index < tvshow.production_companies.length - 1 && (
                   <span className="block h-[0.375rem] w-[0.375rem] rounded-full bg-[#CFC9CF]"></span>
                 )}
               </Fragment>
@@ -220,14 +215,14 @@ export default async function IndividualMovie({
                 key={index}
                 imageUrl={poster.file_path}
                 type="poster"
-                name={movie.title}
+                name={tvshow.name}
               />
             ),
           )}
         </CardsGrid>
       </div>
 
-      {movie.reviews && movie.reviews.results.length > 0 && (
+      {tvshow.reviews && tvshow.reviews.results.length > 0 && (
         <div className="pt-16 md:pt-24 lg:pt-28">
           <CardsGrid>
             <div className="col-span-2 flex items-end justify-between gap-x-2 pt-4 sm:flex-col sm:items-start sm:justify-normal sm:gap-x-0 sm:gap-y-2 sm:pt-6 md:gap-y-6">
@@ -243,7 +238,7 @@ export default async function IndividualMovie({
             </div>
 
             {sliceResultsLengthForCards(
-              movie.reviews.results,
+              tvshow.reviews.results,
               maxReviewToShow,
             ).map((review) => (
               <Review
@@ -259,11 +254,11 @@ export default async function IndividualMovie({
         </div>
       )}
 
-      {movie.recommendations && (
+      {tvshow.recommendations && (
         <div className="pt-16 md:pt-24 lg:pt-28">
           <RecommendationSection
-            type="movie"
-            slides={movie.recommendations.results}
+            type="tv-show"
+            slides={tvshow.recommendations.results}
           />
         </div>
       )}

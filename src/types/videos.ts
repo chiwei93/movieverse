@@ -17,6 +17,6 @@ export type MovieVideosResponse = {
 };
 
 export type TVShowsVideosResponse = {
-  id: number;
+  id?: number;
   results: Video[];
 };

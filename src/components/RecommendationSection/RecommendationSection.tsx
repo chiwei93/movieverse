@@ -1,21 +1,30 @@
 "use client";
 
-import type { CardType } from "@/types/cardType";
-import type { RecommendedMoviesResponse } from "@/types/movies";
+import type { Movie, RecommendedMoviesResponse } from "@/types/movies";
 
 import { useState } from "react";
 import Swiper from "swiper";
 
 import RecommendationCarousel from "../RecommendationCarousel/RecommendationCarousel";
+import { RecommendedTVShowResponse, TVShow } from "@/types/tvshows";
 
-type RecommendationSectionProps = {
-  type?: CardType;
-  movies: RecommendedMoviesResponse["results"];
+type MovieRecommendationProps = {
+  type: "movie";
+  slides: RecommendedMoviesResponse["results"];
 };
 
+type TVRecommendationProps = {
+  type: "tv-show";
+  slides: RecommendedTVShowResponse["results"];
+};
+
+type RecommendationSectionProps =
+  | MovieRecommendationProps
+  | TVRecommendationProps;
+
 export default function RecommendationSection({
-  type = "movie",
-  movies
+  type,
+  slides,
 }: RecommendationSectionProps) {
   const [swiper, setSwiper] = useState<Swiper | null>(null);
 
@@ -74,7 +83,19 @@ export default function RecommendationSection({
       </div>
 
       <div className="">
-        <RecommendationCarousel setSwiper={setSwiper} type={type} movies={movies} />
+        {type === "movie" ? (
+          <RecommendationCarousel
+            setSwiper={setSwiper}
+            type={type}
+            slides={slides}
+          />
+        ) : (
+          <RecommendationCarousel
+            setSwiper={setSwiper}
+            type={type}
+            slides={slides}
+          />
+        )}
       </div>
     </>
   );

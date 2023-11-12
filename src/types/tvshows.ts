@@ -1,7 +1,9 @@
 import type { Backdrop } from "./backdrop";
 import type { Genre } from "./genres";
 import type { ProductionCompany } from "./productionCompany";
+import type { TVShowReviewsResponse } from "./reviews";
 import type { SpokenLanguage } from "./spokenLanguage";
+import type { TVShowsVideosResponse } from "./videos";
 
 export type TVShow = {
   adult?: boolean;
@@ -63,6 +65,7 @@ type Episode = {
   season_number: number;
   show_id: number;
   still_path: string;
+  episode_type?: string;
 };
 
 type Network = {
@@ -121,6 +124,9 @@ export type TVShowsDetailsResponse = {
   type: string;
   vote_average: number;
   vote_count: number;
+  videos?: TVShowsVideosResponse;
+  recommendations?: RecommendedTVShowResponse;
+  reviews?: TVShowReviewsResponse;
 };
 
 export type RecommendedTVShowResponse = {

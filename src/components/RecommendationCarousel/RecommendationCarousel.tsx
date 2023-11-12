@@ -1,6 +1,5 @@
 "use client";
 
-import type { CardType } from "@/types/cardType";
 import type { Dispatch, SetStateAction } from "react";
 import type { RecommendedMoviesResponse } from "@/types/movies";
 
@@ -13,14 +12,25 @@ import "swiper/css";
 import Card from "@/components/Card/Card";
 
 import { sliceResultsLengthForCards } from "@/utils/sliceResultsToShow";
+import { RecommendedTVShowResponse } from "@/types/tvshows";
 
 const maxSlidesToShow = 24;
 
-type RecommendationCarouselProps = {
+type MovieRecommendationCarouselProps = {
   setSwiper: Dispatch<SetStateAction<SwiperClass | null>>;
-  type: CardType;
-  movies: RecommendedMoviesResponse["results"];
+  type: "movie";
+  slides: RecommendedMoviesResponse["results"];
 };
+
+type TVRecommendationCarouselProps = {
+  setSwiper: Dispatch<SetStateAction<SwiperClass | null>>;
+  type: "tv-show";
+  slides: RecommendedTVShowResponse["results"];
+};
+
+type RecommendationCarouselProps =
+  | MovieRecommendationCarouselProps
+  | TVRecommendationCarouselProps;
 
 const GAP_BETWEEN_SLIDES = 16;
 const DESKTOP_VIEWPORT = 1024;
@@ -34,7 +44,7 @@ const SLIDES_IN_MOBILE = 2;
 export default function RecommendationCarousel({
   setSwiper,
   type,
-  movies,
+  slides,
 }: RecommendationCarouselProps) {
   const [slidesPerView, setSlidePerView] = useState(SLIDES_IN_TABLETS);
 
@@ -66,24 +76,45 @@ export default function RecommendationCarousel({
       slidesPerView={slidesPerView}
       onSwiper={(swiper) => setSwiper(swiper)}
     >
-      {sliceResultsLengthForCards(movies, maxSlidesToShow).map((movie) => (
-        <SwiperSlide
-          key={movie.id}
-          style={{ height: "auto" }}
-          className="relative"
-        >
-          <Card
-            type={type}
-            id={movie.id}
-            imageUrl={movie.poster_path}
-            name={movie.title}
-            bottomRowProps={{
-              rating: movie.vote_average,
-              releaseDate: movie.release_date,
-            }}
-          />
-        </SwiperSlide>
-      ))}
+      {type === "movie" &&
+        sliceResultsLengthForCards(slides, maxSlidesToShow).map((slide) => (
+          <SwiperSlide
+            key={slide.id}
+            style={{ height: "auto" }}
+            className="relative"
+          >
+            <Card
+              type={type}
+              id={slide.id}
+              imageUrl={slide.poster_path}
+              name={slide.title}
+              bottomRowProps={{
+                rating: slide.vote_average,
+                releaseDate: slide.release_date,
+              }}
+            />
+          </SwiperSlide>
+        ))}
+
+      {type === "tv-show" &&
+        sliceResultsLengthForCards(slides, maxSlidesToShow).map((slide) => (
+          <SwiperSlide
+            key={slide.id}
+            style={{ height: "auto" }}
+            className="relative"
+          >
+            <Card
+              type={type}
+              id={slide.id}
+              imageUrl={slide.poster_path}
+              name={slide.name}
+              bottomRowProps={{
+                rating: slide.vote_average,
+                releaseDate: slide.first_air_date,
+              }}
+            />
+          </SwiperSlide>
+        ))}
     </Swiper>
   );
 }

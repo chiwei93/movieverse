@@ -24,7 +24,7 @@ export type MovieReviewsResponse = {
 };
 
 export type TVShowReviewsResponse = {
-  id: number;
+  id?: number;
   page: number;
   results: Review[];
   total_pages: number;
