@@ -98,6 +98,10 @@ export default function Hero({ type, slides }: HeroProps) {
     currentActiveSlide.overview.length > MAX_LENGTH_OF_OVERVIEW
       ? `${currentActiveSlide.overview.slice(0, MAX_LENGTH_OF_OVERVIEW)}...`
       : currentActiveSlide.overview;
+  const detailUrl =
+    type === "movies"
+      ? `/movies/${currentActiveSlide.id}`
+      : `/tv-shows/${currentActiveSlide.id}`;
 
   const setNextSlide = () => {
     if (activeIndex < slides.length - 1) {
@@ -201,7 +205,7 @@ export default function Hero({ type, slides }: HeroProps) {
 
           <div className="text-[0.8rem] xl:text-[1rem]">
             <Link
-              href={`/movies/${currentActiveSlide.id}`}
+              href={detailUrl}
               className="inline-block rounded border border-[#F50057] bg-[#F50057] px-8 py-2 text-center text-white sm:px-12"
             >
               See details
