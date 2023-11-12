@@ -100,8 +100,8 @@ export default function Hero({ type, slides }: HeroProps) {
       : currentActiveSlide.overview;
   const detailUrl =
     type === "movies"
-      ? `/movies/${currentActiveSlide.id}`
-      : `/tv-shows/${currentActiveSlide.id}`;
+      ? `/details/${currentActiveSlide.id}?type=movie`
+      : `/details/${currentActiveSlide.id}?type=tv-show`;
 
   const setNextSlide = () => {
     if (activeIndex < slides.length - 1) {
@@ -139,8 +139,8 @@ export default function Hero({ type, slides }: HeroProps) {
 
         <div className="absolute left-0 right-0 top-0 h-[5rem] bg-gradient-to-b from-[#121012]"></div>
         <div className="absolute bottom-0 left-0 right-0 h-[5rem] bg-gradient-to-t from-[#121012]"></div>
-        <div className="absolute bottom-0 left-0 top-0 w-[4rem] bg-gradient-to-r from-[#121012]"></div>
-        <div className="absolute bottom-0 right-0 top-0 w-[4rem] bg-gradient-to-l from-[#121012] md:via-[#131113]"></div>
+        <div className="hidden md:absolute md:bottom-0 md:left-0 md:top-0 md:block md:w-[4rem] md:bg-gradient-to-r md:from-[#121012]"></div>
+        <div className="hidden md:absolute md:bottom-0 md:right-0 md:top-0 md:block md:w-[4rem] md:bg-gradient-to-l md:from-[#121012] md:via-[#131113]"></div>
       </div>
 
       <div className="md:col-span-3 lg:col-span-5">
