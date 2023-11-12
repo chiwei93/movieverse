@@ -1,6 +1,6 @@
 "use client";
 
-import type { Movie, RecommendedMoviesResponse } from "@/types/movies";
+import type { RecommendedMoviesResponse } from "@/types/movies";
 
 import { useState } from "react";
 import Swiper from "swiper";
