@@ -1,6 +1,6 @@
 "use client";
 
-import type { Genre } from "@/types/genres";
+import type { Genre } from "@/types/Genres";
 
 import { useState } from "react";
 import Swiper from "swiper";

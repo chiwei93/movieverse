@@ -1,4 +1,4 @@
-import type { Backdrop } from "./backdrop";
+import type { Backdrop } from "./Backdrop";
 import type { TVShowsDetailsResponse } from "./tvshows";
 
 export type TVShowDetailsPageData = {

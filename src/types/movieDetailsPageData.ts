@@ -1,4 +1,4 @@
-import type { Backdrop } from "./backdrop";
+import type { Backdrop } from "./Backdrop";
 import type { MovieDetailsResponse } from "./movies";
 
 export type MovieDetailData = {

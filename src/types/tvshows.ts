@@ -1,9 +1,9 @@
-import type { Backdrop } from "./backdrop";
-import type { Genre } from "./genres";
-import type { ProductionCompany } from "./productionCompany";
-import type { TVShowReviewsResponse } from "./reviews";
+import type { Backdrop } from "./Backdrop";
+import type { Genre } from "./Genres";
+import type { ProductionCompany } from "./ProductionCompany";
+import type { TVShowReviewsResponse } from "./Reviews";
 import type { SpokenLanguage } from "./spokenLanguage";
-import type { TVShowsVideosResponse } from "./videos";
+import type { TVShowsVideosResponse } from "./Videos";
 
 export type TVShow = {
   adult?: boolean;

@@ -5,7 +5,7 @@ type AuthorDetail = {
   rating: number | null;
 };
 
-type Review = {
+export type Review = {
   author: string;
   author_details: AuthorDetail;
   content: string;

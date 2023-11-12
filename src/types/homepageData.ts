@@ -1,4 +1,4 @@
-import type { MovieGenresResponse, TVShowGenresResponse } from "./genres";
+import type { MovieGenresResponse, TVShowGenresResponse } from "./Genres";
 import type {
   NowPlayingMoviesResponse,
   TrendingMoviesResponse,

@@ -1,4 +1,4 @@
-import type { TVShowGenresResponse } from "@/types/genres";
+import type { TVShowGenresResponse } from "@/types/Genres";
 
 export const mockTVShowGenres: TVShowGenresResponse = {
   genres: [
