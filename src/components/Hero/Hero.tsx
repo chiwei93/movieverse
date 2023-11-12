@@ -179,17 +179,10 @@ export default function Hero({ movies }: HeroProps) {
             {currentActiveSlide.overview}
           </div>
 
-          <div className="grid grid-cols-2 gap-x-4 text-[0.8rem] md:grid-cols-1 md:gap-x-0 md:gap-y-4 lg:flex lg:gap-x-4 lg:gap-y-0 xl:text-[1rem]">
-            <Link
-              href="/"
-              className="rounded border border-[#F50057] bg-[#F50057] px-4 py-2 text-center text-white sm:px-8"
-            >
-              Watch trailer
-            </Link>
-
+          <div className="text-[0.8rem] xl:text-[1rem]">
             <Link
               href={`/movies/${currentActiveSlide.id}`}
-              className="inline-block rounded border border-[#F3F1F3] px-4 py-2 text-center text-[#F3F1F3] sm:px-8"
+              className="inline-block rounded border border-[#F50057] bg-[#F50057] px-8 py-2 text-center text-white sm:px-12"
             >
               See details
             </Link>
