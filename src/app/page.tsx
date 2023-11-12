@@ -101,7 +101,7 @@ export default async function Home() {
             <SectionTitle
               title="trending tv shows"
               description="Trending TV Shows of the day"
-              href="/trending"
+              href="/tv-shows/category/trending"
               shouldShowLink={
                 mockHomePageData.trendingTV.results.length >
                 MAX_NUMBER_OF_CARD_SHOWN
@@ -119,6 +119,8 @@ export default async function Home() {
                 key={tv.id}
                 name={tv.name}
                 imageUrl={tv.poster_path}
+                type="tv-show"
+                id={tv.id}
               />
             ),
           )}

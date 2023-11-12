@@ -19,7 +19,7 @@ type CardProps = {
 
 const getUrl = (type: CardType, id?: number) => {
   if (type === "movie") return `/movies/${id}`;
-  if (type === "tv-show") return `/tvshows/${id}`;
+  if (type === "tv-show") return `/tv-shows/${id}`;
   return "";
 };
 
