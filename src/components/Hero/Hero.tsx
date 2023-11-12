@@ -1,17 +1,15 @@
 "use client";
 
 import type { Movie } from "@/types/movies";
+import type { TVShow } from "@/types/tvshows";
 
 import { useId, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-type RatingsProps = {
-  rating: number;
-};
-
 const MAX_NUMBER_OF_STARS = 5;
 const MAX_NUMBER_OF_RATINGS = 10;
+const MAX_LENGTH_OF_OVERVIEW = 400;
 
 const renderStars = (rating: number, id: string) => {
   const numOfStars = Math.round(
@@ -63,6 +61,10 @@ const renderStars = (rating: number, id: string) => {
   return stars;
 };
 
+type RatingsProps = {
+  rating: number;
+};
+
 function Ratings({ rating }: RatingsProps) {
   const id = useId();
 
@@ -77,16 +79,28 @@ function Ratings({ rating }: RatingsProps) {
   );
 }
 
-type HeroProps = {
-  movies: Movie[];
+type MovieHeroProps = {
+  slides: Movie[];
+  type: "movies";
 };
 
-export default function Hero({ movies }: HeroProps) {
+type TVHeroProps = {
+  slides: TVShow[];
+  type: "tvshows";
+};
+
+type HeroProps = MovieHeroProps | TVHeroProps;
+
+export default function Hero({ type, slides }: HeroProps) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const currentActiveSlide = movies[activeIndex];
+  const currentActiveSlide = slides[activeIndex];
+  const slicedOverview =
+    currentActiveSlide.overview.length > MAX_LENGTH_OF_OVERVIEW
+      ? `${currentActiveSlide.overview.slice(0, MAX_LENGTH_OF_OVERVIEW)}...`
+      : currentActiveSlide.overview;
 
   const setNextSlide = () => {
-    if (activeIndex < movies.length - 1) {
+    if (activeIndex < slides.length - 1) {
       setActiveIndex((prevIndex) => prevIndex + 1);
     } else {
       setActiveIndex(0);
@@ -97,7 +111,7 @@ export default function Hero({ movies }: HeroProps) {
     if (activeIndex > 0) {
       setActiveIndex((prevIndex) => prevIndex - 1);
     } else {
-      setActiveIndex(movies.length - 1);
+      setActiveIndex(slides.length - 1);
     }
   };
 
@@ -109,7 +123,11 @@ export default function Hero({ movies }: HeroProps) {
       <div className="relative aspect-[2/3] object-cover md:col-span-5 lg:col-span-7 lg:aspect-[2/2.8]">
         <Image
           src={`https://image.tmdb.org/t/p/original${currentActiveSlide.poster_path}`}
-          alt={`Hero image for ${currentActiveSlide.title}`}
+          alt={`Hero image for ${
+            type === "movies"
+              ? (currentActiveSlide as Movie).title
+              : (currentActiveSlide as TVShow).name
+          }`}
           fill
           priority
           sizes="(max-width: 0) 100%"
@@ -168,7 +186,9 @@ export default function Hero({ movies }: HeroProps) {
 
         <div>
           <h1 className="text-[1.563rem] font-bold uppercase leading-7 text-[#F3F1F3] md:text-[1.953rem] md:leading-8 lg:text-[3.052rem] lg:leading-none">
-            {currentActiveSlide.title}
+            {type === "movies"
+              ? (currentActiveSlide as Movie).title
+              : (currentActiveSlide as TVShow).name}
           </h1>
 
           <div className="pt-2">
@@ -176,7 +196,7 @@ export default function Hero({ movies }: HeroProps) {
           </div>
 
           <div className="pb-6 pt-4 leading-7 text-[#CFC9CF] lg:pb-10 lg:pt-8 lg:leading-relaxed xl:pb-14 xl:pt-10 xl:text-[1.13rem]">
-            {currentActiveSlide.overview}
+            {slicedOverview}
           </div>
 
           <div className="text-[0.8rem] xl:text-[1rem]">

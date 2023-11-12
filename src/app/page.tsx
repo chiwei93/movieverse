@@ -20,7 +20,7 @@ async function getHomePageData(): Promise<HomePageData> {
     fetchData("/trending/movie/day?language=en-US"),
     fetchData("/trending/tv/day?language=en-US"),
     fetchData("/genre/movie/list?language=en"),
-    fetchData("/genre/tv/list?language=en`"),
+    fetchData("/genre/tv/list?language=en"),
   ];
 
   try {
@@ -46,7 +46,7 @@ export default async function Home() {
   return (
     <>
       <div className="md:pt-8 lg:pt-12">
-        <Hero movies={mockHomePageData.nowPlaying.results} key="homePage" />
+        <Hero key="homePage" type="movies" slides={mockHomePageData.nowPlaying.results} />
       </div>
 
       <div className="pt-24">

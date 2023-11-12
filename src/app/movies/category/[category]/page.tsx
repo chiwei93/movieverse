@@ -40,7 +40,7 @@ export default async function MovieCategory({
   params,
 }: MovieCategoryProps) {
   const page = parseInt(searchParams.page ?? 1);
-  // const res = await getMovieCategoryData(params.category, searchParams.page);
+  // const res = await getMovieCategoryData(params.category, page);
   const res = mockMovieCategoryData;
 
   return (

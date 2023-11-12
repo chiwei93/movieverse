@@ -42,7 +42,7 @@ export default async function Movies() {
   return (
     <>
       <div className="md:pt-8 lg:pt-12">
-        <Hero movies={res.nowPlaying.results} key="moviesPage" />
+        <Hero slides={res.nowPlaying.results} key="moviesPage" type="movies" />
       </div>
 
       <div className="pt-24">
