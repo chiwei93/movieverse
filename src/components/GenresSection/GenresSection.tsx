@@ -7,31 +7,28 @@ import Swiper from "swiper";
 
 import GenresCarousel from "@/components/GenresCarousel/GenresCarousel";
 
-// remove this default genre after development
-const testgenres = [
-  { name: "action", id: 1 },
-  { name: "adventure", id: 2 },
-  { name: "comedy", id: 3 },
-  { name: "sci-fi", id: 4 },
-  { name: "romance", id: 5 },
-  { name: "mystery", id: 6 },
-];
+type SectionType = "movies" | "tv-shows";
 
 type Props = {
   title: string;
-  genres?: Genre[];
+  genres: Genre[];
+  type?: SectionType;
 };
 
-const generateGenresWithHref = (genres: Genre[]) => {
+const generateGenresWithHref = (genres: Genre[], type: SectionType) => {
   return genres.map((genre) => {
     return {
       ...genre,
-      href: `/movies/genres/${genre.name.toLowerCase()}`,
+      href: `/${type}/genres/${genre.name.toLowerCase()}`,
     };
   });
 };
 
-export default function GenresSection({ title, genres = testgenres }: Props) {
+export default function GenresSection({
+  title,
+  genres,
+  type = "movies",
+}: Props) {
   const [swiper, setSwiper] = useState<Swiper | null>(null);
 
   return (
@@ -90,7 +87,7 @@ export default function GenresSection({ title, genres = testgenres }: Props) {
 
       <div className="">
         <GenresCarousel
-          genres={generateGenresWithHref(genres)}
+          genres={generateGenresWithHref(genres, type)}
           setSwiper={setSwiper}
         />
       </div>
