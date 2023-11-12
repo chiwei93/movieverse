@@ -1,6 +1,6 @@
 import type { Movie } from "./movies";
 
-export type GenrePageData = {
+export type MovieGenrePageData = {
   page: number;
   results: Movie[];
   total_pages: number;

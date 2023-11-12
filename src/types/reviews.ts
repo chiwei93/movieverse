@@ -15,8 +15,6 @@ type Review = {
   url: string;
 };
 
-//get all the reviews of the movie
-//https://api.themoviedb.org/3/movie/{movieid}/reviews?language=en-US&page=1
 export type MovieReviewsResponse = {
   id?: number;
   page: number;
@@ -25,8 +23,6 @@ export type MovieReviewsResponse = {
   total_results: number;
 };
 
-//get all the reviews of the tv show
-//https://api.themoviedb.org/3/tv/series_id/reviews?language=en-US&page=1
 export type TVShowReviewsResponse = {
   id: number;
   page: number;

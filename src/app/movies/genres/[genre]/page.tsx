@@ -1,4 +1,4 @@
-import type { GenrePageData } from "@/types/genrePageData";
+import type { MovieGenrePageData } from "@/types/movieGenrePageData";
 
 import Link from "next/link";
 
@@ -7,7 +7,7 @@ import Card from "@/components/Card/Card";
 import Pagination from "@/components/Pagination/Pagination";
 
 import { fetchData } from "@/utils/fetchData";
-import { mockGenrePageData } from "@/mocks/mockGenrePageData";
+import { mockMovieGenrePageData } from "@/mocks/mockMovieGenrePageData";
 
 type GenreProps = {
   params: { genre: string };
@@ -17,7 +17,7 @@ type GenreProps = {
 async function getGenrePageData(
   genre: string,
   page: number,
-): Promise<GenrePageData> {
+): Promise<MovieGenrePageData> {
   try {
     return await fetchData(
       `/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc&with_genres=${genre}`,
@@ -31,7 +31,7 @@ async function getGenrePageData(
 export default async function Genre({ params, searchParams }: GenreProps) {
   const page = parseInt(searchParams.page ?? 1);
   // const res = await getGenrePageData(params.genre, page);
-  const res = mockGenrePageData;
+  const res = mockMovieGenrePageData;
 
   return (
     <div className="md:pt-8 lg:pt-12">

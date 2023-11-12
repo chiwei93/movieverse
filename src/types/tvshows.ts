@@ -3,16 +3,16 @@ import type { Genre } from "./genres";
 import type { ProductionCompany } from "./productionCompany";
 import type { SpokenLanguage } from "./spokenLanguage";
 
-type TVShow = {
-  adult: boolean;
-  backdrop_path: string;
+export type TVShow = {
+  adult?: boolean;
+  backdrop_path: string | null;
   id: number;
   name: string;
   original_language: string;
   original_name: string;
   overview: string;
-  poster_path: string;
-  media_type: string;
+  poster_path: string | null;
+  media_type?: string;
   genre_ids: number[];
   popularity: number;
   first_air_date: string;
@@ -21,8 +21,6 @@ type TVShow = {
   origin_country: string[];
 };
 
-// get trending tv shows for the day
-//https://api.themoviedb.org/3/trending/tv/day?language=en-US
 export type TrendingTVShowsResponse = {
   page: number;
   results: TVShow[];
@@ -30,8 +28,6 @@ export type TrendingTVShowsResponse = {
   total_results: number;
 };
 
-// get popular tv shows
-//https://api.themoviedb.org/3/tv/popular?language=en-US&page=1
 export type PopularTVShowResponse = {
   page: number;
   results: TVShow[];
@@ -39,8 +35,6 @@ export type PopularTVShowResponse = {
   total_results: number;
 };
 
-// get top rated tv shows
-//https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=1
 export type TopRatedTVShowResponse = {
   page: number;
   results: TVShow[];
@@ -94,8 +88,6 @@ type Season = {
   vote_average: number;
 };
 
-// get details of tv shows
-//https://api.themoviedb.org/3/tv/{series_id}?language=en-US
 export type TVShowsDetailsResponse = {
   adult: boolean;
   backdrop_path: string;
@@ -131,8 +123,6 @@ export type TVShowsDetailsResponse = {
   vote_count: number;
 };
 
-// get recommendations of similar tv shows
-//https://api.themoviedb.org/3/tv/series_id/recommendations?language=en-US&page=1
 export type RecommendedTVShowResponse = {
   page: number;
   results: TVShow[];
@@ -140,14 +130,10 @@ export type RecommendedTVShowResponse = {
   total_results: number;
 };
 
-// get all the images of the tv show
-// https://api.themoviedb.org/3/tv/series_id/images
 export type TVShowImagesResponse = {
   backdrops: Backdrop[];
 };
 
-// search tv shows
-// https://api.themoviedb.org/3/search/tv?query=title&include_adult=false&language=en-US&page=1
 export type SearchTVShowResponse = {
   page: number;
   results: TVShow[];

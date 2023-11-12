@@ -1,6 +1,6 @@
-import type { GenrePageData } from "@/types/genrePageData";
+import type { MovieGenrePageData } from "@/types/movieGenrePageData";
 
-export const mockGenrePageData: GenrePageData = {
+export const mockMovieGenrePageData: MovieGenrePageData = {
   page: 1,
   results: [
     {

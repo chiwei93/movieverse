@@ -23,8 +23,6 @@ export type Movie = {
   vote_count: number;
 };
 
-// now playing movies
-//https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1
 export type NowPlayingMoviesResponse = {
   dates: {
     maximum: string;
@@ -36,8 +34,6 @@ export type NowPlayingMoviesResponse = {
   total_results: number;
 };
 
-// get popular movies
-//https://api.themoviedb.org/3/movie/popular?language=en-US&page=1
 export type PopularMoviesResponse = {
   page: number;
   results: Movie[];
@@ -45,8 +41,6 @@ export type PopularMoviesResponse = {
   total_results: number;
 };
 
-// get top rated movies
-//https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1
 export type TopRatedMoviesResponse = {
   page: number;
   results: Movie[];
@@ -54,8 +48,6 @@ export type TopRatedMoviesResponse = {
   total_results: number;
 };
 
-// get trending movies
-//https://api.themoviedb.org/3/trending/movie/day?language=en-US
 export type TrendingMoviesResponse = {
   page: number;
   results: Movie[];
@@ -63,8 +55,6 @@ export type TrendingMoviesResponse = {
   total_results: number;
 };
 
-// get upcoming movies
-//https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1
 export type UpcomingMoviesResponse = {
   dates: {
     maximum: string;
@@ -76,8 +66,6 @@ export type UpcomingMoviesResponse = {
   total_results: number;
 };
 
-// get the detail of the movie
-//https://api.themoviedb.org/3/movie/{movieid}?language=en-US
 export type MovieDetailsResponse = {
   adult: boolean;
   backdrop_path: string;
@@ -117,8 +105,6 @@ export type MovieDetailsResponse = {
   recommendations?: RecommendedMoviesResponse;
 };
 
-//get recommendations of similar movies
-//https://api.themoviedb.org/3/movie/{movieid}/recommendations?language=en-US&page=1
 export type RecommendedMoviesResponse = {
   page: number;
   results: Movie[];
@@ -126,14 +112,10 @@ export type RecommendedMoviesResponse = {
   total_results: number;
 };
 
-// get all the images of the movie
-// https://api.themoviedb.org/3/movie/movie_id/images
 export type MovieImagesResponse = {
   backdrops: Backdrop[];
 };
 
-// search for movie
-// https://api.themoviedb.org/3/search/movie?query={title}&include_adult=false&language=en-US&page=1
 export type SearchMoviesResponse = {
   page: number;
   results: Movie[];
