@@ -52,7 +52,7 @@ export default async function TVShowsPage() {
             <SectionTitle
               title="top rated"
               description="Top rated TV series over the years"
-              href="/tv-shows/category/top-rated"
+              href="/category/top-rated?page=1&type=tv-show"
             />
           </div>
 
@@ -82,7 +82,7 @@ export default async function TVShowsPage() {
             <SectionTitle
               title="on air"
               description="TV series that are on air"
-              href="/tv-shows/category/on-air"
+              href="/category/on-air?page=1&type=tv-show"
             />
           </div>
 
@@ -108,7 +108,7 @@ export default async function TVShowsPage() {
             <SectionTitle
               title="airing today"
               description="TV series that are airing today"
-              href="/tv-shows/category/airing-today"
+              href="/category/airing-today?page=1&type=tv-show"
             />
           </div>
 
