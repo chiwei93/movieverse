@@ -1,17 +1,15 @@
-import type { TVShowsPageData } from "@/types/tvShowsPageData";
+import type { TVShowsPageData } from "@/types/NewTVShowsPageData";
 
-import Hero from "@/components/Hero/Hero";
-
-import CardsGrid from "@/components/CardsGrid/CardsGrid";
+import HeroSection from "@/components/HeroSection/HeroSection";
+import Grid from "@/components/Grid/Grid";
 import SectionTitle from "@/components/SectionTitle/SectionTitle";
-import Card from "@/components/Card/Card";
-import GenresSection from "@/components/GenresSection/GenresSection";
+import GenresCarousel from "@/components/NewGenresCarousel/NewGenresCarousel";
 
 import { fetchData } from "@/utils/fetchData";
 import { sliceResultsLengthForCards } from "@/utils/sliceResultsToShow";
-import { mockTVShowsPageData } from "@/mocks/mockTVShowsPageData";
+import { mockTVShowsPageData } from "@/mocks/mockNewTVShowsPageData";
 
-async function getTVShowsData(): Promise<TVShowsPageData> {
+async function getTVShowsPageData(): Promise<TVShowsPageData> {
   try {
     const promises = [
       fetchData("/tv/airing_today?language=en-US&page=1"),
@@ -43,93 +41,96 @@ export default async function TVShowsPage() {
   return (
     <>
       <div className="md:pt-8 lg:pt-12">
-        <Hero slides={res.popular.results} key="tvshowsPage" type="tvshows" />
+        <HeroSection
+          key="TVShowsPagePopularHeroSection"
+          type="tv-show"
+          slides={res.popular.results}
+        />
       </div>
 
       <div className="pt-24">
-        <CardsGrid>
+        <Grid>
           <div className="col-span-2 pb-8 sm:pt-6">
             <SectionTitle
               title="top rated"
               description="Top rated TV series over the years"
-              href="/category/top-rated?page=1&type=tv-show"
+              href="/category/top-rated?type=tv-show&page=1"
+              shouldShowLink={res.topRated.total_pages > 1}
             />
           </div>
 
-          {sliceResultsLengthForCards(res.topRated.results).map((tv) => (
-            <Card
-              key={tv.id}
-              id={tv.id}
-              imageUrl={tv.poster_path}
-              name={tv.name}
+          {sliceResultsLengthForCards(res.topRated.results).map((movieOrTV) => (
+            <Grid.Card
+              key={movieOrTV.id}
               type="tv-show"
-              bottomRowProps={{
-                rating: tv.vote_average,
-                releaseDate: tv.first_air_date,
-              }}
+              id={movieOrTV.id}
+              imageUrl={movieOrTV.poster_path}
+              name={movieOrTV.name ?? ""}
+              rating={movieOrTV.vote_average}
+              releaseDate={movieOrTV.first_air_date ?? ""}
             />
           ))}
-        </CardsGrid>
+        </Grid>
       </div>
 
       <div className="pt-32 xl:pt-40">
-        <GenresSection
+        <GenresCarousel
+          type="tv-show"
           title="genres"
           genres={res.genres.genres}
-          type="tv-show"
         />
       </div>
 
       <div className="pt-32 xl:pt-40">
-        <CardsGrid>
+        <Grid>
           <div className="col-span-2 pb-8 sm:pt-6">
             <SectionTitle
               title="on air"
               description="TV series that are on air"
-              href="/category/on-air?page=1&type=tv-show"
+              href="/category/on-air?type=tv-show&page=1"
+              shouldShowLink={res.onAir.total_pages > 1}
             />
           </div>
 
-          {sliceResultsLengthForCards(res.onAir.results).map((tv) => (
-            <Card
-              key={tv.id}
-              id={tv.id}
-              imageUrl={tv.poster_path}
-              name={tv.name}
+          {sliceResultsLengthForCards(res.onAir.results).map((movieOrTV) => (
+            <Grid.Card
+              key={movieOrTV.id}
               type="tv-show"
-              bottomRowProps={{
-                rating: tv.vote_average,
-                releaseDate: tv.first_air_date,
-              }}
+              id={movieOrTV.id}
+              imageUrl={movieOrTV.poster_path}
+              name={movieOrTV.name ?? ""}
+              rating={movieOrTV.vote_average}
+              releaseDate={movieOrTV.first_air_date ?? ""}
             />
           ))}
-        </CardsGrid>
+        </Grid>
       </div>
 
       <div className="pt-32 xl:pt-40">
-        <CardsGrid>
+        <Grid>
           <div className="col-span-2 pb-8 sm:pt-6">
             <SectionTitle
               title="airing today"
               description="TV series that are airing today"
-              href="/category/airing-today?page=1&type=tv-show"
+              href="/category/airing-today?type=tv-show&page=1"
+              shouldShowLink={res.airingToday.total_pages > 1}
             />
           </div>
 
-          {sliceResultsLengthForCards(res.airingToday.results).map((tv) => (
-            <Card
-              key={tv.id}
-              id={tv.id}
-              imageUrl={tv.poster_path}
-              name={tv.name}
-              type="tv-show"
-              bottomRowProps={{
-                rating: tv.vote_average,
-                releaseDate: tv.first_air_date,
-              }}
-            />
-          ))}
-        </CardsGrid>
+          {sliceResultsLengthForCards(res.airingToday.results).map(
+            (movieOrTV) => (
+              <Grid.Card
+                key={movieOrTV.id}
+                type="tv-show"
+                id={movieOrTV.id}
+                imageUrl={movieOrTV.poster_path}
+                name={movieOrTV.name ?? ""}
+                rating={movieOrTV.vote_average}
+                releaseDate={movieOrTV.first_air_date ?? ""}
+              />
+            ),
+          )}
+        </Grid>
       </div>
     </>
   );
