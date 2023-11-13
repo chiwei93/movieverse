@@ -1,29 +1,24 @@
-import type { HomePageData } from "@/types/homepageData";
+import type { HomePageData } from "@/types/NewHomePageData";
 
-import Card from "@/components/Card/Card";
-import CardsGrid from "@/components/CardsGrid/CardsGrid";
-import GenresSection from "@/components/GenresSection/GenresSection";
-import Hero from "@/components/Hero/Hero";
+import Grid from "@/components/Grid/Grid";
 import SectionTitle from "@/components/SectionTitle/SectionTitle";
+import GenresCarousel from "@/components/NewGenresCarousel/NewGenresCarousel";
+import HeroSection from "@/components/HeroSection/HeroSection";
 
 import { fetchData } from "@/utils/fetchData";
 import { sliceResultsLengthForCards } from "@/utils/sliceResultsToShow";
-
-// for development purposes
-import { mockHomePageData } from "@/mocks/mockHomePageData";
-
-const MAX_NUMBER_OF_CARD_SHOWN = 16;
+import { mockNewHomePageData } from "@/mocks/mockNewHomePageData";
 
 async function getHomePageData(): Promise<HomePageData> {
-  const promises = [
-    fetchData("/movie/now_playing?language=en-US&page=1"),
-    fetchData("/trending/movie/day?language=en-US"),
-    fetchData("/trending/tv/day?language=en-US"),
-    fetchData("/genre/movie/list?language=en"),
-    fetchData("/genre/tv/list?language=en"),
-  ];
-
   try {
+    const promises = [
+      fetchData("/movie/now_playing?language=en-US&page=1"),
+      fetchData("/trending/movie/day?language=en-US"),
+      fetchData("/trending/tv/day?language=en-US"),
+      fetchData("/genre/movie/list?language=en"),
+      fetchData("/genre/tv/list?language=en"),
+    ];
+
     const res = await Promise.all(promises);
 
     return {
@@ -39,92 +34,90 @@ async function getHomePageData(): Promise<HomePageData> {
   }
 }
 
-export default async function Home() {
-  // const data = await getHomePageData();
-  // console.log(data);
+export default async function HomePage() {
+  // const res = await getHomePageData();
+  const res = mockNewHomePageData;
 
   return (
     <>
       <div className="md:pt-8 lg:pt-12">
-        <Hero key="homePage" type="movies" slides={mockHomePageData.nowPlaying.results} />
+        <HeroSection
+          type="movie"
+          slides={res.nowPlaying.results}
+          key="movieNowPlayingHeroSection"
+        />
       </div>
 
       <div className="pt-24">
-        <CardsGrid>
+        <Grid>
           <div className="col-span-2 pb-8 sm:pt-6">
             <SectionTitle
               title="trending movies"
               description="Trending movies of the day"
-              href="/category/trending?page=1&type=movie"
-              shouldShowLink={
-                mockHomePageData.trendingMovies.results.length >
-                MAX_NUMBER_OF_CARD_SHOWN
-              }
+              href="/category/trending?type=movie&page=1"
+              shouldShowLink={res.trendingMovies.total_pages > 1}
             />
           </div>
 
-          {sliceResultsLengthForCards(
-            mockHomePageData.trendingMovies.results,
-          ).map((movie) => (
-            <Card
-              bottomRowProps={{
-                rating: movie.vote_average,
-                releaseDate: movie.release_date,
-              }}
-              key={movie.id}
-              name={movie.title}
-              imageUrl={movie.poster_path}
-              id={movie.id}
-            />
-          ))}
-        </CardsGrid>
+          {sliceResultsLengthForCards(res.trendingMovies.results).map(
+            (movieOrTV) => (
+              <Grid.Card
+                key={movieOrTV.id}
+                type="movie"
+                id={movieOrTV.id}
+                name={movieOrTV.title ?? ""}
+                imageUrl={movieOrTV.poster_path}
+                rating={movieOrTV.vote_average}
+                releaseDate={movieOrTV.release_date ?? ""}
+              />
+            ),
+          )}
+        </Grid>
       </div>
 
       <div className="pt-32">
-        <GenresSection
+        <GenresCarousel
+          type="movie"
+          key="movieGenres"
           title="movies"
-          genres={mockHomePageData.genresMovies.genres}
+          genres={res.genresMovies.genres}
         />
       </div>
 
       <div className="pt-24">
-        <GenresSection
-          title="tv shows"
-          genres={mockHomePageData.genresTV.genres}
+        <GenresCarousel
           type="tv-show"
+          key="tvGenres"
+          title="tv shows"
+          genres={res.genresTV.genres}
         />
       </div>
 
       <div className="pt-32">
-        <CardsGrid>
+        <Grid>
           <div className="col-span-2 pb-8 sm:pt-6">
             <SectionTitle
               title="trending tv shows"
               description="Trending TV Shows of the day"
-              href="/category/trending?page=1&type=tv-show"
-              shouldShowLink={
-                mockHomePageData.trendingTV.results.length >
-                MAX_NUMBER_OF_CARD_SHOWN
-              }
+              href="/category/trending?type=tv-show&page=1"
+              shouldShowLink={res.trendingTV.total_pages > 1}
             />
           </div>
 
-          {sliceResultsLengthForCards(mockHomePageData.trendingTV.results).map(
-            (tv) => (
-              <Card
-                bottomRowProps={{
-                  rating: tv.vote_average,
-                  releaseDate: tv.first_air_date,
-                }}
-                key={tv.id}
-                name={tv.name}
-                imageUrl={tv.poster_path}
+          {sliceResultsLengthForCards(res.trendingTV.results).map(
+            (movieOrTV) => (
+              <Grid.Card
+                key={movieOrTV.id}
                 type="tv-show"
-                id={tv.id}
+                id={movieOrTV.id}
+                imageUrl={movieOrTV.poster_path}
+                name={movieOrTV.name ?? ""}
+                rating={movieOrTV.vote_average}
+                releaseDate={movieOrTV.first_air_date ?? ""}
               />
             ),
           )}
-        </CardsGrid>
+        </Grid>
       </div>
     </>
   );
