@@ -1,4 +1,4 @@
-import { CategoryPageData } from "@/types/CategoryPageData";
+import type { CategoryPageData } from "@/types/CategoryPageData";
 
 export const mockMovieCategoryPageData: CategoryPageData = {
   page: 1,
