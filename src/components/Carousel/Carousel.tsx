@@ -27,6 +27,7 @@ const SLIDES_IN_TABLETS = 4;
 const SLIDES_IN_LARGE_MOBILE = 3;
 const SLIDES_IN_MOBILE = 2;
 const MAX_SLIDES_TO_SHOW = 24;
+const MOVIE_TYPE = "movie";
 
 export default function Carousel({
   title = "recommendations",
@@ -127,10 +128,10 @@ export default function Carousel({
               type={type}
               id={slide.id}
               imageUrl={slide.poster_path}
-              name={type === "movie" ? slide.title ?? "" : slide.name ?? ""}
+              name={type === MOVIE_TYPE ? slide.title ?? "" : slide.name ?? ""}
               rating={slide.vote_average}
               releaseDate={
-                type === "movie"
+                type === MOVIE_TYPE
                   ? slide.release_date ?? ""
                   : slide.first_air_date ?? ""
               }

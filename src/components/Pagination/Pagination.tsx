@@ -4,6 +4,7 @@ type Props = {
   baseUrl: string;
   currentPage: number;
   totalPages: number;
+  queryParams?: string;
 };
 
 function getPageNumbers(currentPage: number, totalPages: number) {
@@ -36,6 +37,7 @@ export default function Pagination({
   baseUrl,
   currentPage,
   totalPages,
+  queryParams,
 }: Props) {
   const hasPreviousPage = currentPage > 1;
   const hasNextPage = currentPage < totalPages;
@@ -45,7 +47,7 @@ export default function Pagination({
     <div className="flex items-center gap-x-4">
       {hasPreviousPage && (
         <Link
-          href={`${baseUrl}?page=${currentPage - 1}`}
+          href={`${baseUrl}?page=${currentPage - 1}&${queryParams}`}
           className="text-[#9F939F] transition hover:text-[#F3F1F3]"
         >
           <svg
@@ -66,7 +68,7 @@ export default function Pagination({
       <div className="flex items-center gap-x-2">
         {pageNums.map((num) => (
           <Link
-            href={`${baseUrl}?page=${num}`}
+            href={`${baseUrl}?page=${num}&${queryParams}`}
             className={`flex items-center justify-center rounded px-4 py-2 text-[1rem] transition hover:bg-[#CFC9CF] hover:text-black ${
               currentPage === num
                 ? "bg-[#CFC9CF] text-black"
@@ -81,7 +83,7 @@ export default function Pagination({
 
       {hasNextPage && (
         <Link
-          href={`${baseUrl}?page=${currentPage + 1}`}
+          href={`${baseUrl}?page=${currentPage + 1}&${queryParams}`}
           className="text-[#9F939F] transition hover:text-[#F3F1F3]"
         >
           <svg
