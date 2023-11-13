@@ -8,7 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 
-import Card from "@/components/Card/Card";
+import Grid from "../Grid/Grid";
 
 import { sliceResultsLengthForCards } from "@/utils/sliceResultsToShow";
 
@@ -123,18 +123,17 @@ export default function Carousel({
             style={{ height: "auto" }}
             className="relative"
           >
-            <Card
+            <Grid.Card
               type={type}
               id={slide.id}
               imageUrl={slide.poster_path}
-              name={type === "movie" ? slide.title : slide.name}
-              bottomRowProps={{
-                rating: slide.vote_average,
-                releaseDate:
-                  type === "movie"
-                    ? slide.release_date ?? ""
-                    : slide.first_air_date ?? "",
-              }}
+              name={type === "movie" ? slide.title ?? "" : slide.name ?? ""}
+              rating={slide.vote_average}
+              releaseDate={
+                type === "movie"
+                  ? slide.release_date ?? ""
+                  : slide.first_air_date ?? ""
+              }
             />
           </SwiperSlide>
         ))}
