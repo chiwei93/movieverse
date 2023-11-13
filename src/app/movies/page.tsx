@@ -1,14 +1,13 @@
-import type { MoviesPageData } from "@/types/moviesPageData";
+import type { MoviesPageData } from "@/types/MoviesPageData";
 
-import CardsGrid from "@/components/CardsGrid/CardsGrid";
-import Hero from "@/components/Hero/Hero";
-import Card from "@/components/Card/Card";
+import Grid from "@/components/Grid/Grid";
+import HeroSection from "@/components/HeroSection/HeroSection";
 import SectionTitle from "@/components/SectionTitle/SectionTitle";
-import GenresSection from "@/components/GenresSection/GenresSection";
+import GenresCarousel from "@/components/NewGenresCarousel/NewGenresCarousel";
 
 import { fetchData } from "@/utils/fetchData";
-import { mockMoviesPageData } from "@/mocks/mockMoviesPageData";
 import { sliceResultsLengthForCards } from "@/utils/sliceResultsToShow";
+import { mockMoviesPageData } from "@/mocks/mockMoviesPageData";
 
 async function getMoviesPageData(): Promise<MoviesPageData> {
   try {
@@ -35,96 +34,101 @@ async function getMoviesPageData(): Promise<MoviesPageData> {
   }
 }
 
-export default async function Movies() {
+export default async function MoviesPage() {
   // const res = await getMoviesPageData();
   const res = mockMoviesPageData;
 
   return (
     <>
       <div className="md:pt-8 lg:pt-12">
-        <Hero slides={res.nowPlaying.results} key="moviesPage" type="movies" />
+        <HeroSection
+          type="tv-show"
+          slides={res.nowPlaying.results}
+          key="moviesPageNowPlayingHeroSection"
+        />
       </div>
 
       <div className="pt-24">
-        <CardsGrid>
+        <Grid>
           <div className="col-span-2 pb-8 sm:pt-6">
             <SectionTitle
               title="popular"
               description="Most popular movies over the years"
-              href="/category/popular?page=1&type=movie"
+              href="/category/popular?type=movie&page=1"
+              shouldShowLink={res.popular.total_pages > 1}
             />
           </div>
 
-          {sliceResultsLengthForCards(res.nowPlaying.results).map((movie) => (
-            <Card
-              key={movie.id}
-              id={movie.id}
-              imageUrl={movie.poster_path}
-              name={movie.title}
+          {sliceResultsLengthForCards(res.popular.results).map((movieOrTV) => (
+            <Grid.Card
               type="movie"
-              bottomRowProps={{
-                rating: movie.vote_average,
-                releaseDate: movie.release_date,
-              }}
+              key={movieOrTV.id}
+              id={movieOrTV.id}
+              imageUrl={movieOrTV.poster_path}
+              name={movieOrTV.title ?? ""}
+              rating={movieOrTV.vote_average}
+              releaseDate={movieOrTV.release_date ?? ""}
             />
           ))}
-        </CardsGrid>
+        </Grid>
       </div>
 
       <div className="pt-32 xl:pt-40">
-        <GenresSection title="genres" genres={res.genres.genres} />
+        <GenresCarousel
+          type="movie"
+          genres={res.genres.genres}
+          title="genres"
+        />
       </div>
 
       <div className="pt-32 xl:pt-40">
-        <CardsGrid>
+        <Grid>
           <div className="col-span-2 pb-8 sm:pt-6">
             <SectionTitle
               title="top rated"
               description="The top rated movies over the years"
-              href="/category/top-rated?page=1&type=movie"
+              href="/category/top-rated?type=movie&page=1"
+              shouldShowLink={res.topRated.total_pages > 1}
             />
           </div>
 
-          {sliceResultsLengthForCards(res.topRated.results).map((movie) => (
-            <Card
-              key={movie.id}
-              id={movie.id}
-              imageUrl={movie.poster_path}
-              name={movie.title}
+          {sliceResultsLengthForCards(res.topRated.results).map((movieOrTV) => (
+            <Grid.Card
               type="movie"
-              bottomRowProps={{
-                rating: movie.vote_average,
-                releaseDate: movie.release_date,
-              }}
+              key={movieOrTV.id}
+              id={movieOrTV.id}
+              imageUrl={movieOrTV.poster_path}
+              name={movieOrTV.title ?? ""}
+              rating={movieOrTV.vote_average}
+              releaseDate={movieOrTV.release_date ?? ""}
             />
           ))}
-        </CardsGrid>
+        </Grid>
       </div>
 
       <div className="pt-32 xl:pt-40">
-        <CardsGrid>
+        <Grid>
           <div className="col-span-2 pb-8 sm:pt-6">
             <SectionTitle
               title="upcoming"
               description="Upcoming movies that are yet to be released"
-              href="/category/upcoming?page=1&type=movie"
+              href="/category/upcoming?type=movie&page=1"
+              shouldShowLink={res.upcoming.total_pages > 1}
             />
           </div>
 
-          {sliceResultsLengthForCards(res.upcoming.results).map((movie) => (
-            <Card
-              key={movie.id}
-              id={movie.id}
-              imageUrl={movie.poster_path}
-              name={movie.title}
+          {sliceResultsLengthForCards(res.upcoming.results).map((movieOrTV) => (
+            <Grid.Card
               type="movie"
-              bottomRowProps={{
-                rating: movie.vote_average,
-                releaseDate: movie.release_date,
-              }}
+              key={movieOrTV.id}
+              id={movieOrTV.id}
+              imageUrl={movieOrTV.poster_path}
+              name={movieOrTV.title ?? ""}
+              rating={movieOrTV.vote_average}
+              releaseDate={movieOrTV.release_date ?? ""}
             />
           ))}
-        </CardsGrid>
+        </Grid>
       </div>
     </>
   );

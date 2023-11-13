@@ -1,15 +1,29 @@
-import type { MovieGenresResponse } from "./Genres";
-import type {
-  NowPlayingMoviesResponse,
-  PopularMoviesResponse,
-  TopRatedMoviesResponse,
-  UpcomingMoviesResponse,
-} from "./movies";
+import type { Genre } from "./Genres";
+import type { MovieOrTV } from "./MovieOrTV";
 
 export type MoviesPageData = {
-  nowPlaying: NowPlayingMoviesResponse;
-  popular: PopularMoviesResponse;
-  topRated: TopRatedMoviesResponse;
-  upcoming: UpcomingMoviesResponse;
-  genres: MovieGenresResponse
+  nowPlaying: {
+    results: MovieOrTV[];
+  };
+  popular: {
+    page: number;
+    results: MovieOrTV[];
+    total_pages: number;
+    total_results: number;
+  };
+  topRated: {
+    page: number;
+    results: MovieOrTV[];
+    total_pages: number;
+    total_results: number;
+  };
+  upcoming: {
+    page: number;
+    results: MovieOrTV[];
+    total_pages: number;
+    total_results: number;
+  };
+  genres: {
+    genres: Genre[];
+  };
 };
