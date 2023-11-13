@@ -1,6 +1,6 @@
 import { HomePageData } from "@/types/NewHomePageData";
 
-const mockNewHomePageData: HomePageData = {
+export const mockNewHomePageData: HomePageData = {
   nowPlaying: {
     results: [
       {
