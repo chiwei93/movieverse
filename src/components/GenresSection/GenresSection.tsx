@@ -7,7 +7,7 @@ import Swiper from "swiper";
 
 import GenresCarousel from "@/components/GenresCarousel/GenresCarousel";
 
-type SectionType = "movies" | "tv-shows";
+type SectionType = "movie" | "tv-show";
 
 type Props = {
   title: string;
@@ -19,7 +19,7 @@ const generateGenresWithHref = (genres: Genre[], type: SectionType) => {
   return genres.map((genre) => {
     return {
       ...genre,
-      href: `/${type}/genres/${genre.name.toLowerCase()}`,
+      href: `/genres/${genre.name.toLowerCase()}?type=${type}&page=1`,
     };
   });
 };
@@ -27,7 +27,7 @@ const generateGenresWithHref = (genres: Genre[], type: SectionType) => {
 export default function GenresSection({
   title,
   genres,
-  type = "movies",
+  type = "movie",
 }: Props) {
   const [swiper, setSwiper] = useState<Swiper | null>(null);
 

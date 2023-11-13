@@ -73,7 +73,11 @@ export default async function TVShowsPage() {
       </div>
 
       <div className="pt-32 xl:pt-40">
-        <GenresSection title="genres" genres={res.genres.genres} />
+        <GenresSection
+          title="genres"
+          genres={res.genres.genres}
+          type="tv-show"
+        />
       </div>
 
       <div className="pt-32 xl:pt-40">

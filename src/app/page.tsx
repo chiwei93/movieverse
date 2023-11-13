@@ -91,7 +91,7 @@ export default async function Home() {
         <GenresSection
           title="tv shows"
           genres={mockHomePageData.genresTV.genres}
-          type="tv-shows"
+          type="tv-show"
         />
       </div>
 
