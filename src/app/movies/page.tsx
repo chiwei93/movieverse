@@ -3,7 +3,7 @@ import type { MoviesPageData } from "@/types/MoviesPageData";
 import Grid from "@/components/Grid/Grid";
 import HeroSection from "@/components/HeroSection/HeroSection";
 import SectionTitle from "@/components/SectionTitle/SectionTitle";
-import GenresCarousel from "@/components/NewGenresCarousel/NewGenresCarousel";
+import GenresCarousel from "@/components/GenresCarousel/GenresCarousel";
 
 import { fetchData } from "@/utils/fetchData";
 import { sliceResultsLengthForCards } from "@/utils/sliceResultsToShow";

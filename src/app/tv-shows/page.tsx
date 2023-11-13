@@ -1,13 +1,13 @@
-import type { TVShowsPageData } from "@/types/NewTVShowsPageData";
+import type { TVShowsPageData } from "@/types/TVShowsPageData";
 
 import HeroSection from "@/components/HeroSection/HeroSection";
 import Grid from "@/components/Grid/Grid";
 import SectionTitle from "@/components/SectionTitle/SectionTitle";
-import GenresCarousel from "@/components/NewGenresCarousel/NewGenresCarousel";
+import GenresCarousel from "@/components/GenresCarousel/GenresCarousel";
 
 import { fetchData } from "@/utils/fetchData";
 import { sliceResultsLengthForCards } from "@/utils/sliceResultsToShow";
-import { mockTVShowsPageData } from "@/mocks/mockNewTVShowsPageData";
+import { mockTVShowsPageData } from "@/mocks/mockTVShowsPageData";
 
 async function getTVShowsPageData(): Promise<TVShowsPageData> {
   try {

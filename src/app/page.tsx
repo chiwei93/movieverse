@@ -2,7 +2,7 @@ import type { HomePageData } from "@/types/HomePageData";
 
 import Grid from "@/components/Grid/Grid";
 import SectionTitle from "@/components/SectionTitle/SectionTitle";
-import GenresCarousel from "@/components/NewGenresCarousel/NewGenresCarousel";
+import GenresCarousel from "@/components/GenresCarousel/GenresCarousel";
 import HeroSection from "@/components/HeroSection/HeroSection";
 
 import { fetchData } from "@/utils/fetchData";

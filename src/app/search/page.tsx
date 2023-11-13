@@ -1,5 +1,3 @@
-import Card from "@/components/Card/Card";
-import CardsGrid from "@/components/CardsGrid/CardsGrid";
 import Link from "next/link";
 
 export default function Search() {
@@ -42,19 +40,7 @@ export default function Search() {
         </div>
 
         <div className="pt-8">
-          <CardsGrid>
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-          </CardsGrid>
+          cards
         </div>
       </div>
     </div>
