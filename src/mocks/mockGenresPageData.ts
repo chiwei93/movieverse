@@ -198,191 +198,175 @@ export const mockTVShowGenresPageData: CategoryPageData = {
         "After stealing the Tesseract during the events of “Avengers: Endgame,” an alternate version of Loki is brought to the mysterious Time Variance Authority, a bureaucratic organization that exists outside of time and space and monitors the timeline. They give Loki a choice: face being erased from existence due to being a “time variant” or help fix the timeline and stop a greater threat.",
       poster_path: "/voHUmluYmKyleFkTu3lOXQG702u.jpg",
       vote_average: 8.2,
+      first_air_date: "2021-06-09",
     },
     {
       id: 94722,
       name: "Tagesschau",
       overview:
         "German daily news program, the oldest still existing program on German television.",
-
       poster_path: "/7dFZJ2ZJJdcmkp05B9NWlqTJ5tq.jpg",
       vote_average: 7.2,
+      first_air_date: "1952-12-26",
     },
     {
       id: 233643,
       name: "Secret Mission: Sennyuu Sousakan wa Zettai ni Makenai!",
       overview:
         "The story follows two undercover agents Riko Ikazuchi and her junior partner Noma, who are infiltrating an apartment that is also the hideout of a criminal organization. They pretend to be newlyweds. However, when the culprits do not hear noise from them at night, they get suspicious. In order to convince the culprits that they are a married in couple in love, they start to touch and make some noise... Despite feelings of humiliation and pleasure throughout the undercover investigations, Riko endures it and devotes herself to her justice.",
-
       poster_path: "/ipqu76qqHiVB2vlK2gGZNwF9SwX.jpg",
       vote_average: 5.5,
+      first_air_date: "2023-10-02",
     },
     {
       id: 219109,
       name: "Elas por Elas",
-
       overview:
         "Seven friends who met in their youth at an English course meet again 25 years later; Lara, Taís, Helena, Adriana, Renée, Natália and Carol, each of them has a different personality and origin, but they share a deep affection.",
-
       poster_path: "/hCSH5KvSqShWXhFiXr88wtJXwlO.jpg",
       vote_average: 9.6,
+      first_air_date: "2023-09-25",
     },
     {
       id: 225660,
       name: "Pira-Pirasong Paraiso",
-
       overview:
         "A con artist takes on the job of pretending to be one of the long-lost sisters of a young and rich woman. As she navigates a world of cunning and lies, she learns about right and wrong, love and family, and spectacular truths about herself.",
-
       poster_path: "/gELcO56G9EsUj6LSjaDq8VvI8De.jpg",
       vote_average: 6,
+      first_air_date: "2023-07-25",
     },
     {
       id: 12409,
       name: "Star Academy",
-
       overview:
         "Star Academy is a French reality television show produced by the Dutch company Endemol. It consists of a contest of young singers. It spawned an equally successful show in Quebec called Star Académie. It is broadcast on NRJ12. At the end of each season, selected contestants would go on tour around France, Morocco, Switzerland, Belgium, Tunisia, and other French-speaking countries.\n\nThe contestants stayed in the Dammarie-lès-Lys castle: The Vives-Eaux castle.\n\nThe reality show was hosted by Nikos Aliagas and featured guest stars such as Madonna, Alizée, Céline Dion, Tina Arena, Nelly Furtado, Tokio Hotel, Andrea Bocelli, Charles Aznavour, Hélène Ségara, Peter Kingsbery, Phil Collins, Laura Pausini, Kylie Minogue, Dannii Minogue, Tina Turner, Mariah Carey, Lara Fabian, Rihanna, Shania Twain, Moby, Avril Lavigne, Anastacia, Alicia Keys, Craig David, 50 Cent, will.i.am, James Blunt, Diddy, Sting, David Guetta, Lenny Kravitz, Janet Jackson, Britney Spears, Liza Minnelli, Johnny Hallyday, Paul Anka, Lionel Richie, Alanis Morissette, Ray Charles, Stevie Wonder, Elton John, Bee Gees, Ricky Martin, and Beyoncé.",
-
       poster_path: "/80BP36meHtHF2UuDBgvAJxgFo5V.jpg",
       vote_average: 7,
+      first_air_date: "2001-10-20",
     },
     {
       id: 209265,
       name: "Land of Desire",
-
       overview:
         "When her husband is killed in a land grabbing attempt, Aline takes charge of cultivating his land and protecting his family. Facing the powerful Antonio La Selva, responsible for the death of her husband and the largest landowner in the region, Aline is determined to keep possession of her land and invest in its production. However, she didn't expect that she would fall in love with Daniel, son of her rival, who is at odds with his rebellious half-brother, Caio, who, in turn, also falls in love with the girl. In the interior of Brazil, Aline will have to fight two battles: the dispute for her lands and for her heart.",
-
       poster_path: "/6SgKArqMYmqSl5XlHEucGXvotw.jpg",
       vote_average: 6.5,
+      first_air_date: "2023-05-08",
     },
     {
       id: 569,
       name: "Around the Horn",
-
       overview:
         "Around the Horn is a daily, half-hour sports roundtable on ESPN filmed in Washington, D.C. It airs at 5:00 pm ET, as part of a sports talk hour with Pardon the Interruption. The show is currently hosted by Tony Reali.",
-
       poster_path: "/jGJUpb4fZPaIs1oyFKn0AGjOq5b.jpg",
       vote_average: 4.4,
+      first_air_date: "2002-11-04",
     },
     {
       id: 218145,
       name: "Mom for rent",
-
       overview:
         "Abandoned by his wife, Martin is lying to his daughter not to be upset. But as Hanka grows, these lies become unbearable. Martin meets Nada unexpectedly, asked her to be a rent-a-mother and all lives are completely changed.",
-
       poster_path: "/fH7PP2Rkdlo414IHvZABBHhtoqd.jpg",
       vote_average: 6.1,
+      first_air_date: "2023-01-09",
     },
     {
       id: 213026,
       name: "Fuzue",
-
       overview:
         "The department store Fuzue, specialized in popular items, is a success led by Nero Braga e Silva. Little does he know that the store's grounds have hidden relics for over 300 years.",
-
       poster_path: "/zNNFg8z3z7uT817n6M0kHRcYwq1.jpg",
       vote_average: 5.8,
+      first_air_date: "2023-08-14",
     },
     {
       id: 72879,
       name: "Tomorrow is Ours",
-
       overview:
         "The story revolves around the people of Sète, France. Their lives are punctuated by family rivalries, romance and scenes from daily life, but also by plots involving police investigations, secrets and betrayals.",
-
       poster_path: "/3uU5uJzOX7xe7mn7YKpBM9oiEZO.jpg",
       vote_average: 6.3,
+      first_air_date: "2017-07-17",
     },
     {
       id: 237019,
       name: "Big Brother: Live Stream",
-
       overview: "Big Brother sees it all - and so can you.",
-
       poster_path: "/sYuUb7W2DyLux7paqF4Oob3z2bF.jpg",
       vote_average: 0,
+      first_air_date: "2023-10-08",
     },
     {
       id: 2734,
       name: "Law & Order: Special Victims Unit",
-
       overview:
         "In the criminal justice system, sexually-based offenses are considered especially heinous. In New York City, the dedicated detectives who investigate these vicious felonies are members of an elite squad known as the Special Victims Unit. These are their stories.",
-
       poster_path: "/ywBt4WKADdMVgxTR1rS2uFwMYTH.jpg",
       vote_average: 8,
+      first_air_date: "1999-09-20",
     },
     {
       id: 549,
       name: "Law & Order",
-
       overview:
         "In cases ripped from the headlines, police investigate serious and often deadly crimes, weighing the evidence and questioning the suspects until someone is taken into custody. The district attorney's office then builds a case to convict the perpetrator by proving the person guilty beyond a reasonable doubt. Working together, these expert teams navigate all sides of the complex criminal justice system to make New York a safer place.",
-
       poster_path: "/77OPlbsvX3pzoFbyfpcE3GXMCod.jpg",
       vote_average: 7.5,
+      first_air_date: "1990-09-13",
     },
     {
       id: 6480,
       name: "House Hunters",
-
       overview:
         "Hosted by Suzanne Whang, the show takes viewers behind the scenes as individuals, couples and families learn what to look for and decide whether or not a home is meant for them. Focusing on the emotional experience of finding and purchasing a new home, each episode follows a prospective buyer and real estate agent through the home-buying process, from start to finish.",
-
       poster_path: "/7Bsr9ogG0q6yHtNuIp6bJ6EFpbH.jpg",
       vote_average: 5.1,
+      first_air_date: "1999-09-30",
     },
     {
       id: 101463,
       name: "Al rojo vivo",
-
       overview:
         '"Al rojo vivo" is a program on laSexta focused on the analysis and debate of national and international political current affairs. The format is hosted and directed by Antonio García Ferreras and produced by the News Services of laSexta.',
-
       poster_path: "/ag6PmoBxkF2s1uY3An618NCEt3g.jpg",
       vote_average: 3.4,
+      first_air_date: "2011-01-10",
     },
     {
       id: 226411,
       name: "Mía es la venganza",
-
       overview: "",
-
       poster_path: "/wysp5AcY9JpLjje5NunKYw7Mrtc.jpg",
       vote_average: 7.1,
+      first_air_date: "2023-06-12",
     },
     {
       id: 225148,
       name: "Alessandro Borghese - Celebrity Chef",
-
       overview: "",
-
       poster_path: "/4PlmioYT4SpUdqkGxNoKSDOSD08.jpg",
       vote_average: 0,
+      first_air_date: "2022-05-02",
     },
     {
       id: 61818,
       name: "Late Night with Seth Meyers",
-
       overview:
         'Seth Meyers, who is "Saturday Night Live’s" longest serving anchor on the show’s wildly popular "Weekend Update," takes over as host of NBC’s "Late Night" — home to A-list celebrity guests, memorable comedy and the best in musical talent. As the Emmy Award-winning head writer for "SNL," Meyers has established a reputation for sharp wit and perfectly timed comedy, and has gained fame for his spot-on jokes and satire. Meyers takes his departure from "SNL" to his new post at "Late Night," as Jimmy Fallon moves to "The Tonight Show".',
-
       poster_path: "/x5asOuPOjW21e0Ykkvkuzu1TGEl.jpg",
       vote_average: 5.5,
+      first_air_date: "2014-02-25",
     },
     {
       id: 206559,
       name: "Binnelanders",
-
       overview:
         "A South African Afrikaans soap opera. It is set in and around the fictional private hospital, Binneland Kliniek, in Pretoria, and the storyline follows the trials, trauma and tribulations of the staff and patients of the hospital.",
-
       poster_path: "/v9nGSRx5lFz6KEgfmgHJMSgaARC.jpg",
       vote_average: 4.9,
+      first_air_date: "2005-10-13",
     },
   ],
   total_pages: 7950,
