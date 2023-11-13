@@ -5,16 +5,16 @@ import { Fragment } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+import Review from "@/components/Review/Review";
+import Carousel from "@/components/Carousel/Carousel";
+import Grid from "@/components/Grid/Grid";
+
+import { sliceResultsLengthForCards } from "@/utils/sliceResultsToShow";
 import { fetchData } from "@/utils/fetchData";
 import {
   mockMovieDetailsPageData,
   mockTVDetailsPageData,
 } from "@/mocks/mockDetailsPageData";
-import CardsGrid from "@/components/CardsGrid/CardsGrid";
-import Card from "@/components/Card/Card";
-import { sliceResultsLengthForCards } from "@/utils/sliceResultsToShow";
-import Review from "@/components/Review/Review";
-import Carousel from "@/components/Carousel/Carousel";
 
 type DetailsPageProps = {
   params: {
@@ -27,6 +27,7 @@ type DetailsPageProps = {
 
 const MOVIE_TYPE = "movie";
 const TV_SHOW_TYPE = "tv-show";
+const POSTER_TYPE = "poster";
 const MAX_POSTERS_TO_SHOW = 16;
 const MAX_REVIEWS_TO_SHOW = 5;
 
@@ -99,8 +100,6 @@ async function getDetailPageData(
     throw new Error("Internal server error: Failed to fetch data");
   }
 }
-
-// prepare a default hero image for empty poster_path
 
 export default async function DetailsPage({
   params,
@@ -266,7 +265,7 @@ export default async function DetailsPage({
       )}
 
       <div className="pt-16 md:pt-24 lg:pt-28">
-        <CardsGrid>
+        <Grid>
           <div className="col-span-2 flex items-end justify-between gap-x-2 pt-4 sm:flex-col sm:items-start sm:justify-normal sm:gap-x-0 sm:gap-y-2 sm:pt-6 md:gap-y-6">
             <h2 className="text-[1.25rem] font-medium text-[#877887] md:text-[1.563rem] lg:text-[1.953rem]">
               Posters
@@ -275,20 +274,22 @@ export default async function DetailsPage({
 
           {sliceResultsLengthForCards(posters, MAX_POSTERS_TO_SHOW).map(
             (poster, index) => (
-              <Card
+              <Grid.Card
                 key={index}
                 imageUrl={poster.file_path}
-                type="poster"
-                name={type === MOVIE_TYPE ? detail.title : detail.name}
+                type={POSTER_TYPE}
+                name={
+                  type === MOVIE_TYPE ? detail.title ?? "" : detail.name ?? ""
+                }
               />
             ),
           )}
-        </CardsGrid>
+        </Grid>
       </div>
 
       {detail.reviews && detail.reviews.results.length > 0 && (
         <div className="pt-16 md:pt-24 lg:pt-28">
-          <CardsGrid>
+          <Grid>
             <div className="col-span-2 flex items-end justify-between gap-x-2 pt-4 sm:flex-col sm:items-start sm:justify-normal sm:gap-x-0 sm:gap-y-2 sm:pt-6 md:gap-y-6">
               <h2 className="text-[1.25rem] font-medium text-[#877887] md:text-[1.563rem] lg:text-[1.953rem]">
                 Reviews
@@ -317,7 +318,7 @@ export default async function DetailsPage({
                 reviewUrl={review.url}
               />
             ))}
-          </CardsGrid>
+          </Grid>
         </div>
       )}
 
