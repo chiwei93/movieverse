@@ -6,12 +6,12 @@ import Link from "next/link";
 
 // fix the type after integration with api
 type CardProps = {
-  name?: string;
+  name: string;
   bottomRowProps?: {
     rating: number;
     releaseDate: string;
   };
-  imageUrl?: string | null;
+  imageUrl: string | null;
   id?: number;
   type?: CardType;
   imagePriority?: boolean;
@@ -23,11 +23,16 @@ const getUrl = (type: CardType, id?: number) => {
   return "";
 };
 
+type CardParentProps = {
+  id?: number;
+  type: CardType;
+};
+
 function CardParent({
   id,
   type,
   children,
-}: PropsWithChildren<{ id?: number; type: CardType }>) {
+}: PropsWithChildren<CardParentProps>) {
   const url = getUrl(type, id);
 
   return type !== "poster" ? (
@@ -39,10 +44,9 @@ function CardParent({
   );
 }
 
-// remove the default name and imageurl
 export default function Card({
   bottomRowProps,
-  name = "star wars: the last jedi",
+  name,
   imageUrl,
   id,
   type = "movie",
@@ -56,7 +60,7 @@ export default function Card({
           src={
             imageUrl
               ? `https://image.tmdb.org/t/p/original${imageUrl}`
-              : "/starwars.jpeg"
+              : "/poster-holder.jpg"
           }
           alt={`poster for ${name}`}
           fill
