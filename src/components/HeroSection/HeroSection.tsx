@@ -139,15 +139,13 @@ export default function HeroSection({ type, slides }: HeroSectionProps) {
         <div className="hidden md:absolute md:bottom-0 md:right-0 md:top-0 md:block md:w-[4rem] md:bg-gradient-to-l md:from-[#121012] md:via-[#131113]"></div>
       </motion.div>
 
-      <motion.div
-        className="md:col-span-3 lg:col-span-5"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.8 }}
-        key={`${currentActiveSlide.poster_path}-overview`}
-      >
-        <div className="flex justify-end py-4 md:justify-start md:py-6 lg:pb-8 lg:pt-14 xl:pb-12">
+      <div className="md:col-span-3 lg:col-span-5">
+        <motion.div
+          className="flex justify-end py-4 md:justify-start md:py-6 lg:pb-8 lg:pt-14 xl:pb-12"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+        >
           <div className="flex items-center gap-x-4">
             <button
               className="text-[#9F939F] transition hover:text-[#F3F1F3]"
@@ -189,9 +187,15 @@ export default function HeroSection({ type, slides }: HeroSectionProps) {
               </svg>
             </button>
           </div>
-        </div>
+        </motion.div>
 
-        <div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.8 }}
+          key={`${currentActiveSlide.poster_path}-overview`}
+        >
           <h1 className="text-[1.563rem] font-bold uppercase leading-7 text-[#F3F1F3] md:text-[1.953rem] md:leading-8 lg:text-[3.052rem] lg:leading-none">
             {type === "movie"
               ? currentActiveSlide.title
@@ -214,8 +218,8 @@ export default function HeroSection({ type, slides }: HeroSectionProps) {
               See details
             </Link>
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
     </div>
   );
 }
