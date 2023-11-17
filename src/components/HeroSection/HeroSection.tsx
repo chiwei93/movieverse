@@ -5,6 +5,7 @@ import type { MovieOrTV } from "@/types/MovieOrTV";
 import { useId, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 // Ratings
 type RatingsProps = {
@@ -116,7 +117,14 @@ export default function HeroSection({ type, slides }: HeroSectionProps) {
 
   return (
     <div className="md:grid md:grid-cols-8 md:gap-x-4 lg:grid-cols-12">
-      <div className="relative aspect-[2/3] object-cover md:col-span-5 lg:col-span-7 lg:aspect-[2/2.8]">
+      <motion.div
+        className="relative aspect-[2/3] object-cover md:col-span-5 lg:col-span-7 lg:aspect-[2/2.8]"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.8 }}
+        key={currentActiveSlide.poster_path}
+      >
         <Image
           src={`https://image.tmdb.org/t/p/original${currentActiveSlide.poster_path}`}
           alt={altText}
@@ -129,9 +137,16 @@ export default function HeroSection({ type, slides }: HeroSectionProps) {
         <div className="absolute bottom-0 left-0 right-0 h-[5rem] bg-gradient-to-t from-[#121012]"></div>
         <div className="hidden md:absolute md:bottom-0 md:left-0 md:top-0 md:block md:w-[4rem] md:bg-gradient-to-r md:from-[#121012]"></div>
         <div className="hidden md:absolute md:bottom-0 md:right-0 md:top-0 md:block md:w-[4rem] md:bg-gradient-to-l md:from-[#121012] md:via-[#131113]"></div>
-      </div>
+      </motion.div>
 
-      <div className="md:col-span-3 lg:col-span-5">
+      <motion.div
+        className="md:col-span-3 lg:col-span-5"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.8 }}
+        key={`${currentActiveSlide.poster_path}-overview`}
+      >
         <div className="flex justify-end py-4 md:justify-start md:py-6 lg:pb-8 lg:pt-14 xl:pb-12">
           <div className="flex items-center gap-x-4">
             <button
@@ -200,7 +215,7 @@ export default function HeroSection({ type, slides }: HeroSectionProps) {
             </Link>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
