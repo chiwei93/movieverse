@@ -79,7 +79,7 @@ function CardContent(props: CardContentProps) {
             </span>
           )}
 
-          {props.rating && (
+          {props.rating !== undefined && (
             <div className="ml-auto flex items-center gap-x-1 text-[#F50057]">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

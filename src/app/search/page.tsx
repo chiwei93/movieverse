@@ -1,35 +1,63 @@
+import type { SearchPageData } from "@/types/SearchPageData";
+
 import Link from "next/link";
 
-export default function Search() {
+import SearchInput from "@/components/SearchInput/SearchInput";
+
+import { fetchData } from "@/utils/fetchData";
+import { mockSearchPageData } from "@/mocks/mockSearchPageData";
+import Grid from "@/components/Grid/Grid";
+import Pagination from "@/components/Pagination/Pagination";
+
+type SearchPageProps = {
+  searchParams: {
+    q: string;
+    page: string;
+  };
+};
+
+async function getSearchPageData(
+  query: string,
+  page: number,
+): Promise<SearchPageData> {
+  try {
+    const promises = [
+      fetchData(`/search/movie?query=${query}&language=en-US&page=${page}`),
+      fetchData(`/search/tv?query=${query}&language=en-US&page=${page}`),
+    ];
+
+    const res = await Promise.all(promises);
+
+    return {
+      page: res[0].page ?? res[1].page,
+      results: ((res[0].results ?? []) as SearchPageData["results"]).concat(
+        res[1].results ?? [],
+      ),
+      total_pages: Math.max(res[0].total_pages ?? 1, res[1].total_pages ?? 1),
+      total_results: Math.max(res[0].total_results ?? 1, res[1].total_results),
+    };
+  } catch (err) {
+    if (err instanceof Error) throw new Error(err.message);
+    throw new Error("Internal server error: Failed to fetch data");
+  }
+}
+
+export default async function SearchPage({ searchParams }: SearchPageProps) {
+  const query = searchParams.q;
+  const page = parseInt(searchParams.page ?? 1);
+  // const res = await getSearchPageData(query, page);
+  const res = mockSearchPageData;
+
   return (
     <div className="min-h-[80vh]">
       <div className="relative lg:hidden">
-        <input
-          type="text"
-          className="w-full rounded bg-[#292429] py-2 pl-4 pr-12 text-[0.8rem] text-[#CFC9CF]"
-          placeholder="Search"
-        />
-
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-          />
-        </svg>
+        <SearchInput fullWidth />
       </div>
 
       <div className="pt-8 md:pt-4">
         <div>
           <h2 className="text-[1.25rem] font-medium text-[#877887] md:text-[1.563rem] lg:text-[1.953rem]">
-            Results: Star wars
+            Results: {query}
           </h2>
 
           <div className="pt-2">
@@ -40,7 +68,41 @@ export default function Search() {
         </div>
 
         <div className="pt-8">
-          cards
+          <Grid largeLessCols>
+            {res.results.map((movieOrTV) => {
+              const type = movieOrTV.title ? "movie" : "tv-show";
+
+              return (
+                <Grid.Card
+                  key={movieOrTV.id}
+                  type={type}
+                  id={movieOrTV.id}
+                  imageUrl={movieOrTV.poster_path}
+                  name={
+                    type === "movie"
+                      ? movieOrTV.title ?? ""
+                      : movieOrTV.name ?? ""
+                  }
+                  rating={movieOrTV.vote_average}
+                  imagePriority
+                  releaseDate={
+                    type === "movie"
+                      ? movieOrTV.release_date ?? ""
+                      : movieOrTV.first_air_date ?? ""
+                  }
+                />
+              );
+            })}
+          </Grid>
+        </div>
+
+        <div className="flex justify-end pt-20 lg:pt-32">
+          <Pagination
+            baseUrl={`/search`}
+            currentPage={page}
+            totalPages={res.total_pages}
+            queryParams={`q=${query}`}
+          />
         </div>
       </div>
     </div>
