@@ -1,3 +1,5 @@
-export default function Loading() {
-  return <div>Loading...</div>;
+import LoadingSkeletonWithHero from "@/components/LoadingSkeletonWithHero/LoadingSkeletonWithHero";
+
+export default function LoadingPage() {
+  return <LoadingSkeletonWithHero />;
 }
