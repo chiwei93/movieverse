@@ -118,10 +118,6 @@ export default async function DetailsPage({
     type === MOVIE_TYPE ? detail.title : detail.name
   }`;
   const trailerKey = getYoutubeTrailerKeyFromVideos(res.detail.videos.results);
-  const seeMoreReviewsUrl =
-    type === MOVIE_TYPE
-      ? `/reviews/${detail.id}?type=${MOVIE_TYPE}`
-      : `/reviews/${detail.id}?type=${TV_SHOW_TYPE}`;
 
   return (
     <>
@@ -294,15 +290,6 @@ export default async function DetailsPage({
               <h2 className="text-[1.25rem] font-medium text-[#877887] md:text-[1.563rem] lg:text-[1.953rem]">
                 Reviews
               </h2>
-
-              <div>
-                <Link
-                  href={seeMoreReviewsUrl}
-                  className="text-[0.8rem] text-[#F50057]"
-                >
-                  See more
-                </Link>
-              </div>
             </div>
 
             {sliceResultsLengthForCards(
