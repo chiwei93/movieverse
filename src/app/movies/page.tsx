@@ -42,7 +42,7 @@ export default async function MoviesPage() {
     <>
       <div className="md:pt-8 lg:pt-12">
         <HeroSection
-          type="tv-show"
+          type="movie"
           slides={res.nowPlaying.results}
           key="moviesPageNowPlayingHeroSection"
         />
