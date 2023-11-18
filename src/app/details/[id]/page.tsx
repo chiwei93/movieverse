@@ -11,10 +11,6 @@ import Grid from "@/components/Grid/Grid";
 
 import { sliceResultsLengthForCards } from "@/utils/sliceResultsToShow";
 import { fetchData } from "@/utils/fetchData";
-import {
-  mockMovieDetailsPageData,
-  mockTVDetailsPageData,
-} from "@/mocks/mockDetailsPageData";
 
 type DetailsPageProps = {
   params: {
@@ -106,18 +102,16 @@ export default async function DetailsPage({
   searchParams,
 }: DetailsPageProps) {
   const type = searchParams.type ?? MOVIE_TYPE;
-  // const res = await getDetailPageData(
-  //   parseInt(params.id),
-  //   searchParams.type ?? MOVIE_TYPE,
-  // );
-
-  const res =
-    type === MOVIE_TYPE ? mockMovieDetailsPageData : mockTVDetailsPageData;
+  const res = await getDetailPageData(
+    parseInt(params.id),
+    searchParams.type ?? MOVIE_TYPE,
+  );
   const { detail, posters } = res;
   const altTextForHero = `Hero image for ${
     type === MOVIE_TYPE ? detail.title : detail.name
   }`;
   const trailerKey = getYoutubeTrailerKeyFromVideos(res.detail.videos.results);
+  console.log(detail.recommendations);
 
   return (
     <>
@@ -309,7 +303,7 @@ export default async function DetailsPage({
         </div>
       )}
 
-      {detail.recommendations && (
+      {detail.recommendations && detail.recommendations.results.length > 0 && (
         <div className="pt-16 md:pt-24 lg:pt-28">
           <Carousel
             slides={detail.recommendations.results}

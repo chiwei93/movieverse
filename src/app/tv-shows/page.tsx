@@ -7,7 +7,6 @@ import GenresCarousel from "@/components/GenresCarousel/GenresCarousel";
 
 import { fetchData } from "@/utils/fetchData";
 import { sliceResultsLengthForCards } from "@/utils/sliceResultsToShow";
-import { mockTVShowsPageData } from "@/mocks/mockTVShowsPageData";
 
 async function getTVShowsPageData(): Promise<TVShowsPageData> {
   try {
@@ -35,8 +34,7 @@ async function getTVShowsPageData(): Promise<TVShowsPageData> {
 }
 
 export default async function TVShowsPage() {
-  // const res = await getTVShowsData();
-  const res = mockTVShowsPageData;
+  const res = await getTVShowsPageData();
 
   return (
     <>

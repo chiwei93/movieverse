@@ -3,11 +3,10 @@ import type { SearchPageData } from "@/types/SearchPageData";
 import Link from "next/link";
 
 import SearchInput from "@/components/SearchInput/SearchInput";
-
-import { fetchData } from "@/utils/fetchData";
-import { mockSearchPageData } from "@/mocks/mockSearchPageData";
 import Grid from "@/components/Grid/Grid";
 import Pagination from "@/components/Pagination/Pagination";
+
+import { fetchData } from "@/utils/fetchData";
 
 type SearchPageProps = {
   searchParams: {
@@ -45,8 +44,8 @@ async function getSearchPageData(
 export default async function SearchPage({ searchParams }: SearchPageProps) {
   const query = searchParams.q;
   const page = parseInt(searchParams.page ?? 1);
-  // const res = await getSearchPageData(query, page);
-  const res = mockSearchPageData;
+  const res = await getSearchPageData(query, page);
+  // const res = mockSearchPageData;
 
   return (
     <div className="min-h-[80vh]">

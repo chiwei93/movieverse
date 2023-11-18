@@ -7,11 +7,6 @@ import Pagination from "@/components/Pagination/Pagination";
 
 import { fetchData } from "@/utils/fetchData";
 
-import {
-  mockMovieGenresPageData,
-  mockTVShowGenresPageData,
-} from "@/mocks/mockGenresPageData";
-
 type GenresPageProps = {
   params: {
     genre: string;
@@ -35,8 +30,8 @@ async function getGenresPageData(
   try {
     const url =
       type === MOVIE_TYPE
-        ? `/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc&with_genres=${genre}`
-        : `/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=${page}&sort_by=popularity.desc&with_genres=${genre}`;
+        ? `/discover/movie?language=en-US&page=${page}&sort_by=popularity.desc&with_genres=${genre}`
+        : `/discover/tv?include_null_first_air_dates=false&language=en-US&page=${page}&sort_by=popularity.desc&with_genres=${genre}`;
     return await fetchData(url);
   } catch (err) {
     if (err instanceof Error) throw new Error(err.message);
@@ -50,9 +45,7 @@ export default async function GenresPage({
 }: GenresPageProps) {
   const type = searchParams.type ?? MOVIE_TYPE;
   const page = parseInt(searchParams.page ?? 1);
-  // const res = await getGenresPageData(params.genre, type, page);
-  const res =
-    type === MOVIE_TYPE ? mockMovieGenresPageData : mockTVShowGenresPageData;
+  const res = await getGenresPageData(params.genre, type, page);
 
   return (
     <div className="md:pt-8 lg:pt-12">

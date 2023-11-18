@@ -6,10 +6,6 @@ import Grid from "@/components/Grid/Grid";
 import Pagination from "@/components/Pagination/Pagination";
 
 import { fetchData } from "@/utils/fetchData";
-import {
-  mockMovieCategoryPageData,
-  mockTVShowCategoryPageData,
-} from "@/mocks/mockCategoryPageData";
 
 type CategoryPageProps = {
   params: {
@@ -61,11 +57,7 @@ export default async function CategoryPage({
 }: CategoryPageProps) {
   const type = searchParams.type ?? MOVIE_TYPE;
   const page = parseInt(searchParams.page ?? 1);
-  // const res = await getCategoryPageData(params.category, type, page);
-  const res =
-    type === MOVIE_TYPE
-      ? mockMovieCategoryPageData
-      : mockTVShowCategoryPageData;
+  const res = await getCategoryPageData(params.category, type, page);
 
   return (
     <div className="md:pt-8">

@@ -7,7 +7,6 @@ import HeroSection from "@/components/HeroSection/HeroSection";
 
 import { fetchData } from "@/utils/fetchData";
 import { sliceResultsLengthForCards } from "@/utils/sliceResultsToShow";
-import { mockHomePageData } from "@/mocks/mockHomePageData";
 
 async function getHomePageData(): Promise<HomePageData> {
   try {
@@ -35,8 +34,7 @@ async function getHomePageData(): Promise<HomePageData> {
 }
 
 export default async function HomePage() {
-  // const res = await getHomePageData();
-  const res = mockHomePageData;
+  const res = await getHomePageData();
 
   return (
     <>

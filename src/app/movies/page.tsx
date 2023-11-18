@@ -7,7 +7,6 @@ import GenresCarousel from "@/components/GenresCarousel/GenresCarousel";
 
 import { fetchData } from "@/utils/fetchData";
 import { sliceResultsLengthForCards } from "@/utils/sliceResultsToShow";
-import { mockMoviesPageData } from "@/mocks/mockMoviesPageData";
 
 async function getMoviesPageData(): Promise<MoviesPageData> {
   try {
@@ -35,8 +34,7 @@ async function getMoviesPageData(): Promise<MoviesPageData> {
 }
 
 export default async function MoviesPage() {
-  // const res = await getMoviesPageData();
-  const res = mockMoviesPageData;
+  const res = await getMoviesPageData();
 
   return (
     <>
