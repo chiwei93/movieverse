@@ -111,7 +111,6 @@ export default async function DetailsPage({
     type === MOVIE_TYPE ? detail.title : detail.name
   }`;
   const trailerKey = getYoutubeTrailerKeyFromVideos(res.detail.videos.results);
-  console.log(detail.recommendations);
 
   return (
     <>
