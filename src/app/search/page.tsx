@@ -42,10 +42,9 @@ async function getSearchPageData(
 }
 
 export default async function SearchPage({ searchParams }: SearchPageProps) {
-  const query = searchParams.q;
+  const query = decodeURIComponent(searchParams.q);
   const page = parseInt(searchParams.page ?? 1);
   const res = await getSearchPageData(query, page);
-  // const res = mockSearchPageData;
 
   return (
     <div className="min-h-[80vh]">

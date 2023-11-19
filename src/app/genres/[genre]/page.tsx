@@ -19,8 +19,6 @@ type GenresPageProps = {
 
 const MOVIE_TYPE = "movie";
 const TV_SHOW_TYPE = "tv-show";
-const WHITESPACE = "%20";
-const AND_SYMBOL = "%26";
 
 async function getGenresPageData(
   genre: string,
@@ -51,10 +49,7 @@ export default async function GenresPage({
     <div className="md:pt-8 lg:pt-12">
       <div className="flex items-end justify-between gap-x-2 pt-4 sm:flex-col sm:items-start sm:justify-normal sm:gap-x-0 sm:gap-y-2 sm:pt-6 md:gap-y-2">
         <h2 className="text-[1.25rem] font-medium capitalize text-[#877887] md:text-[1.563rem] lg:text-[1.953rem]">
-          {params.genre
-            .split(WHITESPACE)
-            .map((word) => (word === AND_SYMBOL ? "&" : word))
-            .join(" ")}
+          {decodeURIComponent(params.genre)}
         </h2>
 
         <div>

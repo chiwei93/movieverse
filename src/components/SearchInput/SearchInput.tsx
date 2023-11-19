@@ -15,7 +15,7 @@ export default function SearchInput({ fullWidth = false }: SearchInputProps) {
 
   const onFormSubmit = (e: FormEvent) => {
     e.preventDefault();
-    router.push(`/search?q=${query}&page=1`);
+    router.push(`/search?q=${encodeURIComponent(query)}&page=1`);
     setQuery("");
   };
 
