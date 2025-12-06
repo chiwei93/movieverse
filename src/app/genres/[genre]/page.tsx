@@ -98,7 +98,7 @@ export default async function GenresPage({
           baseUrl={`/genres/${genre}`}
           currentPage={page}
           totalPages={res.total_pages}
-          queryParams={`type=${type}`}
+          queryParams={`type=${type}&genreID=${genreID}`}
         />
       </div>
     </div>
