@@ -8,14 +8,14 @@ import Pagination from "@/components/Pagination/Pagination";
 import { fetchData } from "@/utils/fetchData";
 
 type GenresPageProps = {
-  params: {
+  params: Promise<{
     genre: string;
-  };
-  searchParams: {
+  }>;
+  searchParams: Promise<{
     type: string;
     page: string;
     genreID: string;
-  };
+  }>;
 };
 
 const MOVIE_TYPE = "movie";

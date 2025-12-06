@@ -13,12 +13,12 @@ import { sliceResultsLengthForCards } from "@/utils/sliceResultsToShow";
 import { fetchData } from "@/utils/fetchData";
 
 type DetailsPageProps = {
-  params: {
+  params: Promise<{
     id: string;
-  };
-  searchParams: {
+  }>;
+  searchParams: Promise<{
     type: string;
-  };
+  }>;
 };
 
 const MOVIE_TYPE = "movie";

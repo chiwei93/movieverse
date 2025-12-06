@@ -8,13 +8,13 @@ import Pagination from "@/components/Pagination/Pagination";
 import { fetchData } from "@/utils/fetchData";
 
 type CategoryPageProps = {
-  params: {
+  params: Promise<{
     category: string;
-  };
-  searchParams: {
+  }>;
+  searchParams: Promise<{
     type: string;
     page: string;
-  };
+  }>;
 };
 
 const MOVIE_TYPE = "movie";

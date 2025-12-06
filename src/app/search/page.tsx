@@ -9,10 +9,10 @@ import Pagination from "@/components/Pagination/Pagination";
 import { fetchData } from "@/utils/fetchData";
 
 type SearchPageProps = {
-  searchParams: {
+  searchParams: Promise<{
     q: string;
     page: string;
-  };
+  }>;
 };
 
 async function getSearchPageData(
