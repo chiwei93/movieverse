@@ -14,6 +14,7 @@ type GenresPageProps = {
   searchParams: {
     type: string;
     page: string;
+    genreID: string;
   };
 };
 
@@ -41,15 +42,21 @@ export default async function GenresPage({
   params,
   searchParams,
 }: GenresPageProps) {
-  const type = searchParams.type ?? MOVIE_TYPE;
-  const page = parseInt(searchParams.page ?? 1);
-  const res = await getGenresPageData(params.genre, type, page);
+  const { genre } = await params;
+  const {
+    type: searchParamsType,
+    page: searchParamsPage,
+    genreID,
+  } = await searchParams;
+  const type = searchParamsType ?? MOVIE_TYPE;
+  const page = parseInt(searchParamsPage ?? 1);
+  const res = await getGenresPageData(genreID, type, page);
 
   return (
     <div className="md:pt-8 lg:pt-12">
       <div className="flex items-end justify-between gap-x-2 pt-4 sm:flex-col sm:items-start sm:justify-normal sm:gap-x-0 sm:gap-y-2 sm:pt-6 md:gap-y-2">
         <h2 className="text-[1.25rem] font-medium capitalize text-[#877887] md:text-[1.563rem] lg:text-[1.953rem]">
-          {decodeURIComponent(params.genre)}
+          {decodeURIComponent(genre)}
         </h2>
 
         <div>
@@ -88,7 +95,7 @@ export default async function GenresPage({
 
       <div className="flex justify-end pt-20 lg:pt-32">
         <Pagination
-          baseUrl={`/genres/${params.genre}`}
+          baseUrl={`/genres/${genre}`}
           currentPage={page}
           totalPages={res.total_pages}
           queryParams={`type=${type}`}

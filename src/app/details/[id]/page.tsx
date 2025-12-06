@@ -101,10 +101,12 @@ export default async function DetailsPage({
   params,
   searchParams,
 }: DetailsPageProps) {
-  const type = searchParams.type ?? MOVIE_TYPE;
+  const { type: searchParamsType } = await searchParams;
+  const type = searchParamsType ?? MOVIE_TYPE;
+  const { id } = await params;
   const res = await getDetailPageData(
-    parseInt(params.id),
-    searchParams.type ?? MOVIE_TYPE,
+    parseInt(id),
+    searchParamsType ?? MOVIE_TYPE,
   );
   const { detail, posters } = res;
   const altTextForHero = `Hero image for ${

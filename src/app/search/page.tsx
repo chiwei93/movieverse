@@ -42,8 +42,9 @@ async function getSearchPageData(
 }
 
 export default async function SearchPage({ searchParams }: SearchPageProps) {
-  const query = decodeURIComponent(searchParams.q);
-  const page = parseInt(searchParams.page ?? 1);
+  const { q, page: searchParamsPage } = await searchParams;
+  const query = decodeURIComponent(q);
+  const page = parseInt(searchParamsPage ?? 1);
   const res = await getSearchPageData(query, page);
 
   return (

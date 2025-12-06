@@ -117,7 +117,7 @@ export default function GenresCarousel({
               style={{ height: "auto" }}
             >
               <Link
-                href={`/genres/${encodeURIComponent(genre.name.toLowerCase())}?type=${type}&page=1`}
+                href={`/genres/${encodeURIComponent(genre.name.toLowerCase())}?type=${type}&page=1&genreID=${genre.id}`}
                 className="flex h-full w-full items-center justify-center rounded bg-[#1B181B] px-8 py-4 text-center text-[0.8rem] capitalize text-[#CFC9CF] xl:text-[1rem]"
               >
                 {genre.name}

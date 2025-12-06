@@ -55,15 +55,17 @@ export default async function CategoryPage({
   params,
   searchParams,
 }: CategoryPageProps) {
-  const type = searchParams.type ?? MOVIE_TYPE;
-  const page = parseInt(searchParams.page ?? 1);
-  const res = await getCategoryPageData(params.category, type, page);
+  const { type: searchParamsType, page: searchParamsPage } = await searchParams;
+  const type = searchParamsType ?? MOVIE_TYPE;
+  const page = parseInt(searchParamsPage ?? 1);
+  const { category } = await params;
+  const res = await getCategoryPageData(category, type, page);
 
   return (
     <div className="md:pt-8">
       <div className="flex items-end justify-between gap-x-2 pt-4 sm:flex-col sm:items-start sm:justify-normal sm:gap-x-0 sm:gap-y-2 sm:pt-6 md:gap-y-2">
         <h2 className="text-[1.25rem] font-medium capitalize text-[#877887] md:text-[1.563rem] lg:text-[1.953rem]">
-          {params.category.split("-").join(" ")}
+          {category.split("-").join(" ")}
         </h2>
 
         <div>
@@ -102,7 +104,7 @@ export default async function CategoryPage({
 
       <div className="flex justify-end pt-20 lg:pt-32">
         <Pagination
-          baseUrl={`/category/${params.category}`}
+          baseUrl={`/category/${category}`}
           currentPage={page}
           totalPages={res.total_pages}
           queryParams={`type=${type}`}
